@@ -3417,6 +3417,7 @@ fi
 
 
 
+
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for gzbuffer in -lz" >&5
 $as_echo_n "checking for gzbuffer in -lz... " >&6; }
 if test "${ac_cv_lib_z_gzbuffer+set}" = set; then
@@ -3461,7 +3462,7 @@ _ACEOF
   LIBS="-lz $LIBS"
 
 else
-  echo "[FAILED] Could not locate an appropriate zlib." 2>&1; exit 1
+  echo "[1;31m*** FAILED ***[0m Could not locate an appropriate zlib." 2>&1; exit 1
 fi
 
 

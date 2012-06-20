@@ -9,8 +9,6 @@ Makefile \
 share/Makefile \
 src/Makefile \
 src/share/Makefile \
-src/hello/Makefile \
-src/goodbye/Makefile \
 src/fqu_summary/Makefile \
 src/fqu_tab2q/Makefile \
 src/fqu_tidy/Makefile \
@@ -23,7 +21,8 @@ AC_PROG_INSTALL
 AC_PROG_RANLIB
 AC_PROG_CC
 
-AC_CHECK_LIB([z], [gzbuffer], [], [echo "[[FAILED]] Could not locate an appropriate zlib." 2>&1; exit 1])
+
+AC_CHECK_LIB([z], [gzbuffer], [], [echo "@<:@1;31m*** FAILED ***@<:@0m Could not locate an appropriate zlib." 2>&1; exit 1])
 
 AC_OUTPUT
 

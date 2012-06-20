@@ -442,7 +442,7 @@ Copyright (C) 2009 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/tmp/jac/fqutils'
+ac_pwd='/home/jac/Projects/fqutils'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -648,7 +648,7 @@ S["build"]="x86_64-unknown-linux-gnu"
 S["AM_BACKSLASH"]="\\"
 S["am__untar"]="${AMTAR} xf -"
 S["am__tar"]="${AMTAR} chof - \"$$tardir\""
-S["AMTAR"]="${SHELL} /tmp/jac/fqutils/missing --run tar"
+S["AMTAR"]="${SHELL} /home/jac/Projects/fqutils/missing --run tar"
 S["am__leading_dot"]="."
 S["SET_MAKE"]=""
 S["AWK"]="gawk"
@@ -656,12 +656,12 @@ S["mkdir_p"]="/bin/mkdir -p"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]=""
-S["install_sh"]="${SHELL} /tmp/jac/fqutils/install-sh"
-S["MAKEINFO"]="${SHELL} /tmp/jac/fqutils/missing --run makeinfo"
-S["AUTOHEADER"]="${SHELL} /tmp/jac/fqutils/missing --run autoheader"
-S["AUTOMAKE"]="${SHELL} /tmp/jac/fqutils/missing --run automake-1.10b"
-S["AUTOCONF"]="${SHELL} /tmp/jac/fqutils/missing --run autoconf"
-S["ACLOCAL"]="${SHELL} /tmp/jac/fqutils/missing --run aclocal-1.10b"
+S["install_sh"]="${SHELL} /home/jac/Projects/fqutils/install-sh"
+S["MAKEINFO"]="${SHELL} /home/jac/Projects/fqutils/missing --run makeinfo"
+S["AUTOHEADER"]="${SHELL} /home/jac/Projects/fqutils/missing --run autoheader"
+S["AUTOMAKE"]="${SHELL} /home/jac/Projects/fqutils/missing --run automake-1.10b"
+S["AUTOCONF"]="${SHELL} /home/jac/Projects/fqutils/missing --run autoconf"
+S["ACLOCAL"]="${SHELL} /home/jac/Projects/fqutils/missing --run aclocal-1.10b"
 S["VERSION"]="0.0.5"
 S["PACKAGE"]="fqutils"
 S["CYGPATH_W"]="echo"
