@@ -33,6 +33,18 @@ int main( int argc, char *argv[] )
 
    if ( i == 0 ) {
       z = fqreader_new( NULL );
+
+      while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
+
+         if ( o->squash_flag )
+            h2[0] = '\0';
+
+         if ( o->tabs_flag )
+            printf( "%s\t%s\t%s\t%s\n", h1, s, h2, q );
+
+         else
+            printf( "@%s\n%s\n+%s\n%s\n", h1, s, h2, q );
+      }
       fqreader_free( z );
    }
 
@@ -48,6 +60,7 @@ int main( int argc, char *argv[] )
 
             if ( o->tabs_flag )
                printf( "%s\t%s\t%s\t%s\n", h1, s, h2, q );
+
             else
                printf( "@%s\n%s\n+%s\n%s\n", h1, s, h2, q );
          }

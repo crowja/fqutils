@@ -2,32 +2,35 @@
 
 use strict;
 
-foreach ( 1 .. 10 ) {
-    foreach my $i ( 1 .. 20 ) {
-        my @c = split(//, chr( 64 + $i ) x 120);
+my $count = 0;
 
-        print "\@MIKITA:$i:stan\n";
-        while (@c) {
-            if (rand() < 0.1) {
-                print "\n";
-            }
-            else {
-                print shift(@c);
-            }
+foreach ( 1 .. 2000 ) {
+    $count += 1;
+    my $j = 65 + rand( 26 );
+    my $c = chr( $j );
+    my @c = split( //, $c x 50 );
+
+    print "\@MIKITA:$count:stan\n";
+    while ( @c ) {
+        if ( rand() < 0.1 ) {
+            print "\n";
         }
-        print "\n";
-
-        my @q = split(//, lc chr( 64 + $i ) x 120);
-
-        print "+extra_header_for:MIKITA:$i:stan\n";
-        while (@q) {
-            if (rand() < 0.1) {
-                print "\n";
-            }
-            else {
-                print shift(@q);
-            }
+        else {
+            print shift( @c );
         }
-        print "\n";
     }
+    print "\n";
+
+    my @q = split( //, lc $c x 50 );
+
+    print "+extra_header_for:MIKITA:$count:stan\n";
+    while ( @q ) {
+        if ( rand() < 0.1 ) {
+            print "\n";
+        }
+        else {
+            print shift( @q );
+        }
+    }
+    print "\n";
 }
