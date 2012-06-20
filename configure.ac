@@ -4,7 +4,18 @@ AC_INIT([fqutils], [0.0.5], [jac@ncgr.orgm])
 AM_INIT_AUTOMAKE([1.10 -Wall foreign no-define dist-bzip2 no-installinfo no-texinfo.tex])
 
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_FILES([Makefile share/Makefile src/Makefile src/share/Makefile src/hello/Makefile src/goodbye/Makefile src/fqu_tab2q/Makefile src/fqu_tidy/Makefile tests/Makefile])
+AC_CONFIG_FILES([ \
+Makefile \
+share/Makefile \
+src/Makefile \
+src/share/Makefile \
+src/hello/Makefile \
+src/goodbye/Makefile \
+src/fqu_summary/Makefile \
+src/fqu_tab2q/Makefile \
+src/fqu_tidy/Makefile \
+tests/Makefile
+])
 
 AC_CANONICAL_HOST
 
