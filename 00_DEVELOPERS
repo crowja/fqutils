@@ -1,0 +1,33 @@
+................................................................................
+
+For a new package, modify configure.ac by changing %PACKAGE_NAME% in the line
+
+     AC_INIT([%PACKAGE_NAME%], [%PACKAGE_VERSION%], [])
+
+to the package name. Leave %PACKAGE_VERSION% the way it is during development.
+It is changed only in the release bundle. Run autoconf.
+
+................................................................................
+
+For a release, check out a clean version and name the directory using the format
+pkgname-version, e.g., myfoo-1.2.4. Modify configure.ac again, this time
+changing %PACKAGE_VERSION%. Ought to look something like
+
+     AC_INIT([myfoo], [1.2.4], [])
+
+Steps:
+
+     $ ./autogen.sh                   # just to ensure a makefile exists
+     $ make distclean                 # clean the directories
+     $ vi configure.ac                # set %PACKAGE_VERSION%
+     $ ./autogen.sh                   # create the new configure script
+     $ rm 00_DEVELOPERS               # this file
+
+................................................................................
+
+References to stub names "hello" and "goodbye" are in:
+
+     configure.ac      # Makefile production
+     src/Makefile.am   # SUBDIRS variable
+     src/hello         # directory and its contents
+     src/goodbye       # directory and its contents
