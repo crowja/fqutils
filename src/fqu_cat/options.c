@@ -71,8 +71,8 @@ options_helpmsg( FILE *out )
    fprintf( out, "%s\n", "-q, --quiet" );
    fprintf( out, "%s%s\n", indent, "Run quietly." );
    fprintf( out, "%s\n", "-s, --squash" );
-   fprintf( out, "%s%s\n", indent, "Squash the record by removing. Currently this simply replaces" );
-   fprintf( out, "%s%s\n", indent, "the second header in each record with a blank." );
+   fprintf( out, "%s%s\n", indent, "Attempt to reduce the size of each record. Currently this" );
+   fprintf( out, "%s%s\n", indent, "simply replaces the second header in each record with a blank." );
    fprintf( out, "%s\n", "-t, --tab-delimited" );
    /*            "------------------------------------------------------------------------------80" */
    fprintf( out, "%s%s\n", indent, "Write the output as four tab-delimited columns. Format is" );
@@ -104,12 +104,12 @@ options_cmdline( struct options *p, int argc, char *argv[] )
    int         oindex = 0;
    char        opts[] = "hqstvV";
    static struct option long_options[] = {
-      {"help",      no_argument, NULL, 'h'},
-      {"quiet",     no_argument, NULL, 'q'},
-      {"squash",    no_argument, NULL, 's'},
+      {"help", no_argument, NULL, 'h'},
+      {"quiet", no_argument, NULL, 'q'},
+      {"squash", no_argument, NULL, 's'},
       {"tab-delimited", no_argument, NULL, 't'},
-      {"version",      no_argument, NULL, 'v'},
-      {"verbose",      no_argument, NULL, 'V'},
+      {"version", no_argument, NULL, 'v'},
+      {"verbose", no_argument, NULL, 'V'},
       {NULL, 0, NULL, 0}
    };
 
