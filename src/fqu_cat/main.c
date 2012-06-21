@@ -1,9 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 #include "main.h"
 #include "options.h"
-#include "fgetopt.h"
 #include "fqreader.h"
 
 #ifdef  _IS_NULL
@@ -19,7 +17,8 @@
 
 /*** main() ***/
 
-int main( int argc, char *argv[] )
+int
+main( int argc, char *argv[] )
 {
    char       *h1, *h2, *s, *q;
    unsigned    i;
@@ -29,9 +28,11 @@ int main( int argc, char *argv[] )
    /* Get the command line options */
    options_cmdline( o, argc, argv );
 
+#if 1
    i = o->optind;
 
-   if ( i == 0 ) {
+   if ( i == 0 ) {                               /* read from stdin */
+
       z = fqreader_new( NULL );
 
       while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
@@ -48,9 +49,10 @@ int main( int argc, char *argv[] )
       fqreader_free( z );
    }
 
-   else {
+   else {                                        /* read from input files */
 
       while ( i < argc ) {
+
          z = fqreader_new( argv[i] );
 
          while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
@@ -69,6 +71,7 @@ int main( int argc, char *argv[] )
          i++;
       }
    }
+#endif
    options_free( o );
 
    return 0;

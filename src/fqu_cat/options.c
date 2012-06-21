@@ -23,7 +23,8 @@
 
 /*** options_new() ***/
 
-struct options *options_new( void )
+struct options *
+options_new( void )
 {
    struct options *tp;
 
@@ -43,7 +44,8 @@ struct options *options_new( void )
 
 /*** options_free() ***/
 
-void options_free( struct options *p )
+void
+options_free( struct options *p )
 {
    if ( _IS_NULL( p ) )
       return;
@@ -55,7 +57,8 @@ void options_free( struct options *p )
 
 /*** options_helpmsg() ***/
 
-void options_helpmsg( FILE *out )
+void
+options_helpmsg( FILE *out )
 {
    char        indent[] = "        ";
 
@@ -94,18 +97,19 @@ void options_helpmsg( FILE *out )
 
 /*** options_cmdline() ***/
 
-void options_cmdline( struct options *p, int argc, char *argv[] )
+void
+options_cmdline( struct options *p, int argc, char *argv[] )
 {
    int         c;
    int         oindex = 0;
    char        opts[] = "hqstvV";
    static struct option long_options[] = {
-      {"help", no_argument, NULL, 'h'},
-      {"quiet", no_argument, NULL, 'q'},
-      {"squash", no_argument, NULL, 's'},
+      {"help",      no_argument, NULL, 'h'},
+      {"quiet",     no_argument, NULL, 'q'},
+      {"squash",    no_argument, NULL, 's'},
       {"tab-delimited", no_argument, NULL, 't'},
-      {"version", no_argument, NULL, 'v'},
-      {"verbose", no_argument, NULL, 'V'},
+      {"version",      no_argument, NULL, 'v'},
+      {"verbose",      no_argument, NULL, 'V'},
       {NULL, 0, NULL, 0}
    };
 
@@ -120,7 +124,6 @@ void options_cmdline( struct options *p, int argc, char *argv[] )
 
       if ( c == -1 )                             /* end of the options */
          break;
-
 
       switch ( c ) {
 

@@ -136,10 +136,12 @@ options_cmdline( struct options *p, int argc, char *argv[] )
             break;
 
          case 's':
+printf("SET SQUASH FLAG\n");
             p->squash_flag = 1;
             break;
 
          case 't':
+printf("SET TABS FLAG\n");
             p->tabs_flag = 1;
             break;
 

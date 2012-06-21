@@ -38,6 +38,7 @@ main( int argc, char *argv[] )
 
       if ( o->tabs_flag )
          printf( "%s\t%s\t%s\t%s\n", h1, s, h2, q );
+
       else
          printf( "@%s\n%s\n+%s\n%s\n", h1, s, h2, q );
    }
