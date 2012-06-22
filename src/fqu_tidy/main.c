@@ -3,7 +3,6 @@
 #include <string.h>
 #include "main.h"
 #include "options.h"
-#include "fgetopt.h"
 #include "fqreader.h"
 
 #ifdef  _IS_NULL
@@ -29,7 +28,11 @@ main( int argc, char *argv[] )
    /* Get the command line options */
    options_cmdline( o, argc, argv );
 
-   z = fqreader_new( o->fname );
+   if ( o->optind == argc )
+      z = fqreader_new( NULL );
+
+   else
+      z = fqreader_new( argv[o->optind] );
 
    while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
 

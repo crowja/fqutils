@@ -34,7 +34,8 @@ struct fqreader {
 
 /*** fqreader_new() ***/
 
-struct fqreader *fqreader_new( char *fname )
+struct fqreader *
+fqreader_new( char *fname )
 {
    struct fqreader *tp;
 
@@ -47,6 +48,9 @@ struct fqreader *fqreader_new( char *fname )
 
    else
       tp->in = gzopen( fname, "r" );
+
+   if ( _IS_NULL( tp->in ) )
+      return NULL;
 
    gzbuffer( tp->in, 1024 * 32 );                /* requires at least zlib-1.2.4 */
 
@@ -61,7 +65,8 @@ struct fqreader *fqreader_new( char *fname )
 
 /*** fqreader_free() ***/
 
-void fqreader_free( struct fqreader *p )
+void
+fqreader_free( struct fqreader *p )
 {
    gzclose( p->in );
    varstr_free( p->h1 );
@@ -75,7 +80,8 @@ void fqreader_free( struct fqreader *p )
 
 /*** fqreader_version() ***/
 
-const char *fqreader_version( void )
+const char *
+fqreader_version( void )
 {
    return version;
 }
@@ -83,7 +89,8 @@ const char *fqreader_version( void )
 
 /*** fqreader_init() ***/
 
-int fqreader_init( struct fqreader *p, unsigned extend )
+int
+fqreader_init( struct fqreader *p, unsigned extend )
 {
    /* Do some magic here ... */
 
@@ -93,7 +100,8 @@ int fqreader_init( struct fqreader *p, unsigned extend )
 
 /*** fqreader_next() ***/
 
-int fqreader_next( struct fqreader *p, char **h1, char **h2, char **s, char **q )
+int
+fqreader_next( struct fqreader *p, char **h1, char **h2, char **s, char **q )
 {
    unsigned    rc = 1;
    char        c;

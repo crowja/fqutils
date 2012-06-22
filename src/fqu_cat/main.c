@@ -28,10 +28,7 @@ main( int argc, char *argv[] )
    /* Get the command line options */
    options_cmdline( o, argc, argv );
 
-#if 1
-   i = o->optind;
-
-   if ( i == 0 ) {                               /* read from stdin */
+   if ( o->optind == argc ) {                    /* read from stdin */
 
       z = fqreader_new( NULL );
 
@@ -46,14 +43,22 @@ main( int argc, char *argv[] )
          else
             printf( "@%s\n%s\n+%s\n%s\n", h1, s, h2, q );
       }
+
       fqreader_free( z );
    }
 
    else {                                        /* read from input files */
 
-      while ( i < argc ) {
+      int         i;
+
+      for ( i = o->optind; i < argc; i++ ) {
 
          z = fqreader_new( argv[i] );
+
+         if ( _IS_NULL( z ) ) {
+            fprintf( stderr, "[ERROR] %s: Cannot open input file \"%s\"\n", _I_AM, argv[i] );
+            exit( 1 );
+         }
 
          while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
 
@@ -68,10 +73,9 @@ main( int argc, char *argv[] )
          }
 
          fqreader_free( z );
-         i++;
       }
    }
-#endif
+
    options_free( o );
 
    return 0;

@@ -3,7 +3,7 @@
 #include <string.h>
 #include "config.h"
 #include "options.h"
-#include "fgetopt.h"
+#include "getopt.h"
 #include "main.h"
 
 #ifdef  _IS_NULL
@@ -19,7 +19,6 @@
 /*
  *  Structure is defined in options.h since it needs to be visible.
  */
-
 
 /*** options_new() ***/
 
@@ -66,7 +65,6 @@ options_helpmsg( FILE *out )
    fprintf( out, "USAGE: %s [options] [<infile1> ...]\n", _I_AM );
    fprintf( out, "Streams the contents of <infile1> ... to stdout as text; uses stdin otherwise. \n" );
    fprintf( out, "\nOPTIONS:\n" );
-   fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
    fprintf( out, "%s\n", "-q, --quiet" );
    fprintf( out, "%s%s\n", indent, "Run quietly." );
@@ -101,28 +99,24 @@ void
 options_cmdline( struct options *p, int argc, char *argv[] )
 {
    int         c;
-   int         oindex = 0;
-   char        opts[] = "hqstvV";
    static struct option long_options[] = {
-      {"help", no_argument, NULL, 'h'},
-      {"quiet", no_argument, NULL, 'q'},
-      {"squash", no_argument, NULL, 's'},
-      {"tab-delimited", no_argument, NULL, 't'},
-      {"version", no_argument, NULL, 'v'},
-      {"verbose", no_argument, NULL, 'V'},
-      {NULL, 0, NULL, 0}
+      {"help", no_argument, 0, 'h'},
+      {"squash", no_argument, 0, 's'},
+      {"tab-delimited", no_argument, 0, 't'},
+      {"verbose", no_argument, 0, 'V'},
+      {"version", no_argument, 0, 'v'},
+      {0, 0, 0, 0}
    };
 
-   optarg = NULL;                                /* initialized */
-   opterr = 0;                                   /* suppress fgetopt error messages */
-   optopt = '\0';                                /* initialized */
-   p->optind = 0;
+   while ( 1 ) {
 
-   for ( ;; ) {
+      /* getopt_long stores the option index here. */
+      int         option_index = 0;
 
-      c = fgetopt_long( argc, argv, opts, long_options, &oindex );
+      c = getopt_long( argc, argv, "hstVv", long_options, &option_index );
 
-      if ( c == -1 )                             /* end of the options */
+      /* Detect the end of the options. */
+      if ( c == -1 )
          break;
 
       switch ( c ) {
@@ -130,10 +124,6 @@ options_cmdline( struct options *p, int argc, char *argv[] )
          case 'h':
             options_helpmsg( stdout );
             exit( 0 );
-
-         case 'q':
-            p->verbosity = 0;
-            break;
 
          case 's':
             p->squash_flag = 1;
@@ -153,7 +143,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
             exit( 0 );
 
          case '?':
-            fprintf( stderr, "Bad option \n" );
+            /* getopt_long already printed an error message. */
             break;
 
          default:
@@ -161,11 +151,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       }
    }
 
-   if ( optind < argc ) {                        /* p->fname remains NULL otherwise */
-      p->optind = optind;
-      p->fname = ( char * ) realloc( p->fname, ( 1 + strlen( argv[optind] ) ) * sizeof ( char ) );
-      strcpy( p->fname, argv[optind] );
-   }
+   p->optind = optind;
 }
 
 #undef _IS_NULL
