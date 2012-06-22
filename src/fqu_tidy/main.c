@@ -34,6 +34,11 @@ main( int argc, char *argv[] )
    else
       z = fqreader_new( argv[o->optind] );
 
+   if (_IS_NULL(z)) {
+      fprintf(stderr, "[ERROR] %s: Cannot open input stream\n", _I_AM);
+      exit(1);
+   }
+
    while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
 
       if ( o->squash_flag )

@@ -3,7 +3,6 @@
 #include <string.h>
 #include "main.h"
 #include "options.h"
-#include "fgetopt.h"
 #include "fqreader.h"
 
 #ifdef  _IS_NULL
@@ -26,22 +25,26 @@ static unsigned no;
 
 /* add simple kmer count */
 
-static void _update_header_stats( char *x )
+static void
+_update_header_stats( char *x )
 {
    /* stub */
 }
 
-static void _update_sequence_stats( char *x )
+static void
+_update_sequence_stats( char *x )
 {
 }
 
-static void _update_quality_stats( char *x )
+static void
+_update_quality_stats( char *x )
 {
 }
 
 /*** main() ***/
 
-int main( int argc, char *argv[] )
+int
+main( int argc, char *argv[] )
 {
    char       *h1, *h2, *s, *q;
    struct options *o = options_new(  );
@@ -50,7 +53,16 @@ int main( int argc, char *argv[] )
    /* Get the command line options */
    options_cmdline( o, argc, argv );
 
-   z = fqreader_new( o->fname );
+   if ( o->optind == argc )
+      z = fqreader_new( NULL );
+
+   else
+      z = fqreader_new( argv[o->optind] );
+
+   if ( _IS_NULL( z ) ) {
+      fprintf( stderr, "[ERROR] %s: Cannot open input stream\n", _I_AM );
+      exit( 1 );
+   }
 
    nseqs = 0;
    na = 0;
