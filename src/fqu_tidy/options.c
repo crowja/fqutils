@@ -85,7 +85,7 @@ options_helpmsg( FILE *out )
    fprintf( out, "# Standard text file in\n" );
    fprintf( out, "%s in.fastq > out.fastq\n\n", _I_AM );
    fprintf( out, "# Gzip compressed file input\n" );
-   fprintf( out, " %s in.fastq.gz > out.fastq\n\n", _I_AM );
+   fprintf( out, "%s in.fastq.gz > out.fastq\n\n", _I_AM );
    fprintf( out, "# Standard text on stdin\n" );
    fprintf( out, "gunzip -c in.fastq.gz | %s > out.fastq\n\n", _I_AM );
    fprintf( out, "# Compressed stream on stdin\n" );
