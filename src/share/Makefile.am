@@ -4,6 +4,7 @@
 noinst_LIBRARIES = libshare.a
 libshare_a_SOURCES = \
   fqreader.c fqreader.h \
+  kmer.c kmer.h \
   tdfreader.c tdfreader.h \
   varstr.c varstr.h
 

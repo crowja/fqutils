@@ -4,6 +4,7 @@
 #include "main.h"
 #include "options.h"
 #include "fqreader.h"
+#include "kmer.h"
 
 #ifdef  _IS_NULL
 #undef  _IS_NULL
@@ -15,30 +16,153 @@
 #endif
 #define _FREE(p)                 ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
 
-static unsigned nseqs;
-static unsigned na;
-static unsigned nc;
-static unsigned ng;
-static unsigned nt;                         /* includes t and u */
-static unsigned nn;
-static unsigned no;
+#define  BASESTATES              7
+#define  QUALSTATES              128
 
-/* add simple kmer count */
+static unsigned *basecounts = NULL;
+static unsigned *qualcounts = NULL;
+static char *ucseq = NULL;
+static unsigned maxpos = 0;
+static unsigned nseqs = 0;
+
+static int
+_resize( unsigned len )
+{
+   unsigned    i, j;
+
+   basecounts = realloc( basecounts, BASESTATES * len * sizeof ( unsigned ) );
+   qualcounts = realloc( qualcounts, QUALSTATES * len * sizeof ( unsigned ) );
+   ucseq = realloc( ucseq, ( len + 1 ) * sizeof ( char ) );
+
+   for ( i = maxpos; i < len; i++ ) {
+
+      for ( j = 0; j < BASESTATES; j++ )
+         basecounts[BASESTATES * i + j] = 0;
+
+      for ( j = 0; j < QUALSTATES; j++ )
+         qualcounts[QUALSTATES * i + j] = 0;
+   }
+
+   ucseq[0] = '\0';
+
+   maxpos = len;
+
+   return 0;
+}
+
+static void
+_update_kmer_stats( char *x, unsigned k )
+{
+   unsigned    i;
+   unsigned    len = strlen( x );
+   unsigned    skip = 0;
+
+   for ( i = 0; i < len; i++ ) {
+      switch ( x[i] ) {
+
+         case 'a':
+         case 'A':
+            ucseq[i] = 'A';
+            break;
+
+         case 'c':
+         case 'C':
+            ucseq[i] = 'C';
+            break;
+
+         case 'g':
+         case 'G':
+            ucseq[i] = 'G';
+            break;
+
+         case 't':
+         case 'T':
+            ucseq[i] = 'T';
+            break;
+
+         case 'u':
+         case 'U':
+            ucseq[i] = 'U';
+            break;
+
+         default:
+            ucseq[i] = 'N';
+            break;
+      }
+   }
+
+   for ( i = 0; i < len - k; i++ ) {
+
+   }
+
+   /* Now analyze the sequence */
+
+
+}
 
 static void
 _update_header_stats( char *x )
 {
-   /* stub */
+   unsigned    i;
+   unsigned    len = strlen( x );
+   unsigned    skip = 0;
 }
 
 static void
 _update_sequence_stats( char *x )
 {
+   unsigned    i, j;
+   unsigned    len = strlen( x );
+
+   if ( maxpos < len )
+      _resize( len );
+
+   for ( i = 0; i < len; i++ ) {
+      switch ( x[i] ) {
+         case 'A':
+         case 'a':
+            j = BASESTATES * i;
+            break;
+         case 'C':
+         case 'c':
+            j = BASESTATES * i + 1;
+            break;
+         case 'G':
+         case 'g':
+            j = BASESTATES * i + 2;
+            break;
+         case 'T':
+         case 't':
+            j = BASESTATES * i + 3;
+            break;
+         case 'U':
+         case 'u':
+            j = BASESTATES * i + 4;
+            break;
+         case 'N':
+         case 'n':
+            j = BASESTATES * i + 5;
+            break;
+         default:
+            j = BASESTATES * i + 6;
+            break;
+      }
+
+      basecounts[j] += 1;
+   }
 }
 
 static void
 _update_quality_stats( char *x )
 {
+   unsigned    i, j;
+   unsigned    len = strlen( x );
+
+   if ( maxpos < len )
+      _resize( len );
+
+   for ( i = 0; i < len; i++ )
+      qualcounts[QUALSTATES * i + x[i]] += 1;
 }
 
 /*** main() ***/
@@ -46,6 +170,7 @@ _update_quality_stats( char *x )
 int
 main( int argc, char *argv[] )
 {
+   unsigned    i, j, k = 10;
    char       *h1, *h2, *s, *q;
    struct options *o = options_new(  );
    struct fqreader *z;
@@ -64,23 +189,55 @@ main( int argc, char *argv[] )
       exit( 1 );
    }
 
-   nseqs = 0;
-   na = 0;
-   nc = 0;
-   ng = 0;
-   nt = 0;
-   nn = 0;
-   no = 0;
-
    while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
       nseqs += 1;
       _update_header_stats( h1 );
       _update_sequence_stats( s );
+      /* _update_kmer_stats( s, k ); */
       _update_quality_stats( q );
    }
 
-   printf( "nseqs: %d\n", nseqs );
+   printf( "nseqs\t%d\n", nseqs );
+   printf( "maxpos\t%d\n", maxpos );
 
+   printf( "a_counts" );
+   for ( i = 0; i < maxpos; i++ )
+      printf( "\t%d", basecounts[BASESTATES * i] );
+   printf( "\n" );
+
+   printf( "c_counts" );
+   for ( i = 0; i < maxpos; i++ )
+      printf( "\t%d", basecounts[BASESTATES * i + 1] );
+   printf( "\n" );
+
+   printf( "g_counts" );
+   for ( i = 0; i < maxpos; i++ )
+      printf( "\t%d", basecounts[BASESTATES * i + 2] );
+   printf( "\n" );
+
+   printf( "t_counts" );
+   for ( i = 0; i < maxpos; i++ )
+      printf( "\t%d", basecounts[BASESTATES * i + 3] );
+   printf( "\n" );
+
+   printf( "u_counts" );
+   for ( i = 0; i < maxpos; i++ )
+      printf( "\t%d", basecounts[BASESTATES * i + 4] );
+   printf( "\n" );
+
+   printf( "n_counts" );
+   for ( i = 0; i < maxpos; i++ )
+      printf( "\t%d", basecounts[BASESTATES * i + 5] );
+   printf( "\n" );
+
+   printf( "other_counts" );
+   for ( i = 0; i < maxpos; i++ )
+      printf( "\t%d", basecounts[BASESTATES * i + 6] );
+   printf( "\n" );
+
+
+
+   _FREE( basecounts );
    fqreader_free( z );
    options_free( o );
 

@@ -14,20 +14,20 @@
 #endif
 #define _FREE(p)      ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
 
-static const char   version[] = "20111030";
+static const char version[] = "20111030";
 
 struct varstr {
-   unsigned            size;
-   char               *x;
-   unsigned            extend;
+   unsigned    size;
+   unsigned    extend;
+   char       *x;
 };
 
 /*** varstr_new() ***/
 
-struct varstr      *
+struct varstr *
 varstr_new( void )
 {
-   struct varstr      *tp;
+   struct varstr *tp;
 
    tp = ( struct varstr * ) malloc( sizeof ( struct varstr ) );
    if ( _IS_NULL( tp ) )
@@ -55,24 +55,46 @@ varstr_free( struct varstr *p )
 
 /*** varstr_version() ***/
 
-const char         *
+const char *
 varstr_version( void )
 {
    return version;
 }
 
+/*** varstr_buffersize() ***/
+
+int
+varstr_buffersize( struct varstr *p, unsigned size, unsigned extend )
+{
+   char       *cp;
+
+   if ( size > p->size ) {
+
+      cp = realloc( p->x, size * sizeof ( char ) );
+
+      if ( _IS_NULL( cp ) )
+         return 1;
+
+      p->x = cp;
+      p->size = size;
+   }
+
+   p->extend = ( extend > 0 ? extend : 1 );
+
+   return 0;
+}
 
 /*** varstr_cat() ***/
 
 void
 varstr_cat( struct varstr *p, char *x )
 {
-   unsigned            need = 1 + strlen( p->x ) + strlen( x );
+   unsigned    need = 1 + strlen( p->x ) + strlen( x );
 
    if ( need >= p->size ) {
       p->x = ( char * ) realloc( p->x, ( need + p->extend ) * sizeof ( char ) );
       if ( _IS_NULL( p->x ) ) {
-         fprintf( stderr, "[ERROR] Cannot allocate memory\n" );
+         fprintf( stderr, "[ERROR] %s %d: Cannot allocate memory\n", __FILE__, __LINE__ );
          exit( 1 );
       }
 
@@ -82,19 +104,18 @@ varstr_cat( struct varstr *p, char *x )
    strcat( p->x, x );
 }
 
-
 /*** varstr_catc() ***/
 
 void
 varstr_catc( struct varstr *p, char x )
 {
-   unsigned            len = strlen( p->x );
-   unsigned            need = 2 + len;
+   unsigned    len = strlen( p->x );
+   unsigned    need = 2 + len;
 
    if ( need >= p->size ) {
       p->x = ( char * ) realloc( p->x, ( need + p->extend ) * sizeof ( char ) );
       if ( _IS_NULL( p->x ) ) {
-         fprintf( stderr, "[ERROR] Cannot allocate memory\n" );
+         fprintf( stderr, "[ERROR] %s %d: Cannot allocate memory\n", __FILE__, __LINE__ );
          exit( 1 );
       }
       p->size = need + p->extend;
@@ -110,8 +131,8 @@ varstr_catc( struct varstr *p, char x )
 void
 varstr_chomp( struct varstr *p )
 {
-   char               *cp = varstr_str( p );
-   int                 i = strlen( cp );
+   char       *cp = varstr_str( p );
+   int         i = strlen( cp );
 
    while ( i > 0 ) {
       i -= 1;
@@ -128,8 +149,8 @@ varstr_chomp( struct varstr *p )
 void
 varstr_compact( struct varstr *p )
 {
-   int                 i, j;
-   int                 len = strlen( p->x );
+   int         i, j;
+   int         len = strlen( p->x );
 
    for ( i = 0, j = 0; i < len; i++ ) {
 
@@ -180,9 +201,9 @@ varstr_init( struct varstr *p, unsigned extend )
 void
 varstr_lrtrim( struct varstr *g )
 {
-   char               *cp = g->x;
-   unsigned            i = 0, j = 0;
-   unsigned            len = strlen( cp );
+   char       *cp = g->x;
+   unsigned    i = 0, j = 0;
+   unsigned    len = strlen( cp );
 
    while ( i < len ) {
       if ( !isspace( cp[i] ) )
@@ -204,7 +225,7 @@ varstr_lrtrim( struct varstr *g )
 
 /*** varstr_str() ***/
 
-char               *
+char       *
 varstr_str( struct varstr *p )
 {
    return p->x;
@@ -213,10 +234,10 @@ varstr_str( struct varstr *p )
 
 /*** varstr_to_s() ***/
 
-char               *
+char       *
 varstr_to_s( struct varstr *p )
 {
-   char               *str = ( char * ) malloc( ( 1 + strlen( p->x ) ) * sizeof ( char ) );
+   char       *str = ( char * ) malloc( ( 1 + strlen( p->x ) ) * sizeof ( char ) );
    return strcpy( str, p->x );
 }
 

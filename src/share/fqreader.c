@@ -21,7 +21,7 @@
 #endif
 #define _FATAL(fmt, msg, code) do { fprintf( stderr, (fmt), (msg) ); exit( code ); } while( 0 )
 
-static const char version[] = "20120404";
+static const char version[] = "20120623";
 
 struct fqreader {
    struct varstr *h1;
@@ -55,9 +55,13 @@ fqreader_new( char *fname )
    gzbuffer( tp->in, 1024 * 32 );                /* requires at least zlib-1.2.4 */
 
    tp->h1 = varstr_new(  );
+   varstr_buffersize( tp->h1, 100, 50 );
    tp->h2 = varstr_new(  );
+   varstr_buffersize( tp->h2, 100, 50 );
    tp->s = varstr_new(  );
+   varstr_buffersize( tp->s, 100, 50 );
    tp->q = varstr_new(  );
+   varstr_buffersize( tp->q, 100, 50 );
 
    return tp;
 }
