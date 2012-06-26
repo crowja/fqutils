@@ -21,7 +21,6 @@
 
 static unsigned *basecounts = NULL;
 static unsigned *qualcounts = NULL;
-static char *ucseq = NULL;
 static unsigned maxpos = 0;
 static unsigned nseqs = 0;
 
@@ -32,7 +31,6 @@ _resize( unsigned len )
 
    basecounts = realloc( basecounts, BASESTATES * len * sizeof ( unsigned ) );
    qualcounts = realloc( qualcounts, QUALSTATES * len * sizeof ( unsigned ) );
-   ucseq = realloc( ucseq, ( len + 1 ) * sizeof ( char ) );
 
    for ( i = maxpos; i < len; i++ ) {
 
@@ -42,8 +40,6 @@ _resize( unsigned len )
       for ( j = 0; j < QUALSTATES; j++ )
          qualcounts[QUALSTATES * i + j] = 0;
    }
-
-   ucseq[0] = '\0';
 
    maxpos = len;
 
@@ -55,49 +51,15 @@ _update_kmer_stats( char *x, unsigned k )
 {
    unsigned    i;
    unsigned    len = strlen( x );
-   unsigned    skip = 0;
-
-   for ( i = 0; i < len; i++ ) {
-      switch ( x[i] ) {
-
-         case 'a':
-         case 'A':
-            ucseq[i] = 'A';
-            break;
-
-         case 'c':
-         case 'C':
-            ucseq[i] = 'C';
-            break;
-
-         case 'g':
-         case 'G':
-            ucseq[i] = 'G';
-            break;
-
-         case 't':
-         case 'T':
-            ucseq[i] = 'T';
-            break;
-
-         case 'u':
-         case 'U':
-            ucseq[i] = 'U';
-            break;
-
-         default:
-            ucseq[i] = 'N';
-            break;
-      }
-   }
+   unsigned    hash;
 
    for ( i = 0; i < len - k; i++ ) {
 
+      if ( kmer_hash( k, &( x[i] ), &hash ) )
+         continue;
+
+
    }
-
-   /* Now analyze the sequence */
-
-
 }
 
 static void
