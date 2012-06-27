@@ -22,8 +22,7 @@
 
 /*** options_new() ***/
 
-struct options *
-options_new( void )
+struct options *options_new( void )
 {
    struct options *tp;
 
@@ -41,8 +40,7 @@ options_new( void )
 
 /*** options_free() ***/
 
-void
-options_free( struct options *p )
+void options_free( struct options *p )
 {
    if ( _IS_NULL( p ) )
       return;
@@ -54,8 +52,7 @@ options_free( struct options *p )
 
 /*** options_helpmsg() ***/
 
-void
-options_helpmsg( FILE *out )
+void options_helpmsg( FILE *out )
 {
    char        indent[] = "        ";
 
@@ -77,8 +74,7 @@ options_helpmsg( FILE *out )
 
 /*** options_cmdline() ***/
 
-void
-options_cmdline( struct options *p, int argc, char *argv[] )
+void options_cmdline( struct options *p, int argc, char *argv[] )
 {
    int         c;
    static struct option long_options[] = {
