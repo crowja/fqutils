@@ -1,11 +1,8 @@
-#NOTE ONLY FOR INSTALLED LIBRARIES
+#NOTE NEXT IS ONLY FOR INSTALLED LIBRARIES
 #lib_LIBRARIES = libshare.a
 
 noinst_LIBRARIES = libshare.a
 libshare_a_SOURCES = \
-  fqreader.c fqreader.h \
-  kmer.c kmer.h \
-  tdfreader.c tdfreader.h \
   varstr.c varstr.h
 
 clean-generic:

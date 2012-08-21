@@ -1,7 +1,7 @@
 AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
 
-SUBDIRS = share src tests
+SUBDIRS = src tests
 dist_noinst_SCRIPTS = autogen.sh
 
 maintainer-scrub:
