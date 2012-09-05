@@ -22,7 +22,7 @@ AC_PROG_INSTALL
 AC_PROG_RANLIB
 AC_PROG_CC
 
-## AC_CHECK_LIB([z], [gzbuffer], [], [echo "@<:@1;31m*** FAILED ***@<:@0m Could not locate an appropriate zlib." 2>&1; exit 1])
+AC_CHECK_LIB([z], [gzbuffer], [], [echo "@<:@1;31m*** FAILED ***@<:@0m Could not locate an appropriate zlib." 2>&1; exit 1])
 
 AC_OUTPUT
 
