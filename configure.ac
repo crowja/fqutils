@@ -10,6 +10,8 @@ share/Makefile \
 src/Makefile \
 src/share/Makefile \
 src/fqu_cat/Makefile \
+src/fqu_cull/Makefile \
+src/fqu_is_paired/Makefile \
 src/fqu_summary/Makefile \
 src/fqu_tidy/Makefile \
 tests/Makefile
