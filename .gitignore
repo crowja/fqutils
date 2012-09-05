@@ -6,3 +6,6 @@
 *.in
 Makefile
 core
+*.BAK
+*.bak
+*.tdy
