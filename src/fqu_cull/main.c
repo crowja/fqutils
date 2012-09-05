@@ -1,0 +1,51 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "main.h"
+#include "options.h"
+#include "fqreader.h"
+
+#ifdef  _IS_NULL
+#undef  _IS_NULL
+#endif
+#define _IS_NULL(p)              ((NULL == (p)) ? (1) : (0))
+
+#ifdef  _FREE
+#undef  _FREE
+#endif
+#define _FREE(p)                 ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
+
+
+/*** main() ***/
+
+int main( int argc, char *argv[] )
+{
+   char       *h1, *h2, *s, *q;
+   struct options *o = options_new(  );
+   struct fqreader *z;
+
+   /* Get the command line options */
+   options_cmdline( o, argc, argv );
+
+   if ( o->optind == argc )
+      z = fqreader_new( NULL );
+
+   else
+      z = fqreader_new( argv[o->optind] );
+
+   if ( _IS_NULL( z ) ) {
+      fprintf( stderr, "[ERROR] %s: Cannot open input stream\n", _I_AM );
+      exit( 1 );
+   }
+
+   while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
+   }
+
+   fqreader_free( z );
+   options_free( o );
+
+   return 0;
+}
+
+#undef _IS_NULL
+#undef _FREE
