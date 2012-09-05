@@ -3,6 +3,7 @@
 
 noinst_LIBRARIES = libshare.a
 libshare_a_SOURCES = \
+  fqreader.c fqreader.h \
   varstr.c varstr.h
 
 clean-generic:
