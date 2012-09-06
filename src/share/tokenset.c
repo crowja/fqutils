@@ -138,11 +138,8 @@ char      **
 tokenset_get( struct tokenset *p )
 {
    struct _token *s = p->tokens;
-
    int         last = tokenset_count( p );
-
    char      **list = ( char ** ) calloc( 1 + last, sizeof ( char * ) );
-
    int         i;
 
    for ( i = 0; i < last; i++ ) {

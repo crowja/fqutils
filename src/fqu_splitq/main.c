@@ -72,6 +72,7 @@ main( int argc, char *argv[] )
          printf( "@%s\n%s\n+%s\n%s\n", h1, s, h2, q );
    }
 
+   fqreader_new(fq);
    options_free( o );
    tokenset_free( t );
 
