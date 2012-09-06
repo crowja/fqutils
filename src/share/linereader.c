@@ -19,21 +19,21 @@
 #endif
 #define _BUFSIZE      1024                       /* _BUFSIZE > 1 */
 
-static const char   version[] = "20111128";
+static const char version[] = "20111128";
 
 struct linereader {
-   FILE               *in;
-   char                buf[_BUFSIZE];
-   struct varstr      *text;
+   FILE       *in;
+   char        buf[_BUFSIZE];
+   struct varstr *text;
 };
 
 
 /*** linereader_new() ***/
 
-struct linereader  *
+struct linereader *
 linereader_new( void )
 {
-   struct linereader  *tp;
+   struct linereader *tp;
 
    tp = ( struct linereader * ) malloc( sizeof ( struct linereader ) );
    if ( _IS_NULL( tp ) )
@@ -65,7 +65,7 @@ linereader_free( struct linereader *p )
 
 /*** linereader_version() ***/
 
-const char         *
+const char *
 linereader_version( void )
 {
    return version;
@@ -90,7 +90,7 @@ linereader_init( struct linereader *p, char *fname )
 
 /*** linereader_next() ***/
 
-const char         *
+const char *
 linereader_next( struct linereader *p )
 {
    varstr_empty( p->text );

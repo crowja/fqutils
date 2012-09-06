@@ -15,7 +15,7 @@ struct linereader;
  *  @details FIXME longer description here ...
  */
 
-struct linereader  *linereader_new( void );
+struct linereader *linereader_new( void );
 
 /**
  *
@@ -23,7 +23,7 @@ struct linereader  *linereader_new( void );
  *  @details FIXME longer description here ...
  */
 
-void                linereader_free( struct linereader *p );
+void        linereader_free( struct linereader *p );
 
 /**
  *
@@ -31,7 +31,7 @@ void                linereader_free( struct linereader *p );
  *  @details FIXME longer description here ...
  */
 
-const char         *linereader_version( void );
+const char *linereader_version( void );
 
 /**
  *
@@ -44,7 +44,7 @@ const char         *linereader_version( void );
  */
 
 int
-                    linereader_init( struct linereader *p, char *fname );
+            linereader_init( struct linereader *p, char *fname );
 
 /**
  *
@@ -56,7 +56,7 @@ int
  *  @param x FIXME
  */
 
-const char         *linereader_next( struct linereader *p );
+const char *linereader_next( struct linereader *p );
 
 
 #endif
