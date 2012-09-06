@@ -4,7 +4,7 @@ use strict;
 
 my $count = 0;
 
-foreach ( 1 .. 400000 ) {
+foreach ( 1 .. 4000 ) {
     $count += 1;
     my $j = 65 + rand( 26 );
     my $c = chr( $j );

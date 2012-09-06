@@ -1,6 +1,7 @@
 struct options {
    char       *fname;                       /* input file name, if any */
    int         optind;
+   char       *outname;
    unsigned    quiet_flag;
    unsigned    verbosity;
 };

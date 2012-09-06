@@ -22,8 +22,7 @@
 
 /*** options_new() ***/
 
-struct options *
-options_new( void )
+struct options *options_new( void )
 {
    struct options *tp;
 
@@ -32,6 +31,7 @@ options_new( void )
       return NULL;
 
    tp->fname = NULL;
+   tp->outname = NULL;
    tp->quiet_flag = 0;
    tp->verbosity = 0;
 
@@ -41,31 +41,35 @@ options_new( void )
 
 /*** options_free() ***/
 
-void
-options_free( struct options *p )
+void options_free( struct options *p )
 {
    if ( _IS_NULL( p ) )
       return;
 
    _FREE( p->fname );
+   _FREE( p->outname );
    _FREE( p );
 }
 
 
 /*** options_helpmsg() ***/
 
-void
-options_helpmsg( FILE *out )
+void options_helpmsg( FILE *out )
 {
    char        indent[] = "        ";
 
    /*            "------------------------------------------------------------------------------80" */
-   fprintf( out, "USAGE: %s [options] <infile1> <infile2>\n", _I_AM );
-   fprintf( out, "Assesses if <infile1> and <infile2> are pairwise concordant. Records are read\n" );
-   fprintf( out, "one at a time from both files, and identifier pairing is checked. Nonzero exit\n" );
-   fprintf( out, "code on error or if nonpairing is detected.\n" );
+   fprintf( out, "USAGE: cat in.fq | %s [options] <id_file1> ...\n", _I_AM );
+   fprintf( out, "Splits a file in fastq file into two fastq files based on a collection of\n");
+   fprintf( out, "read identifiers specified in <id_file1> ...\n\n");
+   fprintf( out, "Two files are written: <out>_a.fq and <out>_b.fq. Reads specied in any of the\n");
+   fprintf( out, "id_files are written to the former, and the remainder to the latter. Note that\n");
+   fprintf( out, "the relative order of the reads in the input is preserved in the output files.\n");
    fprintf( out, "\nOPTIONS:\n" );
+   fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
+   fprintf( out, "%s\n", "-o, --out <outname>" );
+   fprintf( out, "%s%s\n", indent, "Write output to <outname>_A.fq and <outname>_B.fq; default: TAP_SQLITQ." );
    fprintf( out, "%s\n", "-q, --quiet" );
    fprintf( out, "%s%s\n", indent, "Run quietly." );
    fprintf( out, "%s\n", "-V, --verbosity" );
@@ -77,12 +81,12 @@ options_helpmsg( FILE *out )
 
 /*** options_cmdline() ***/
 
-void
-options_cmdline( struct options *p, int argc, char *argv[] )
+void options_cmdline( struct options *p, int argc, char *argv[] )
 {
    int         c;
    static struct option long_options[] = {
       {"help", no_argument, 0, 'h'},
+      {"out", required_argument, 0, 'o'},
       {"verbose", no_argument, 0, 'V'},
       {"version", no_argument, 0, 'v'},
       {0, 0, 0, 0}
@@ -93,7 +97,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       /* getopt_long stores the option index here. */
       int         option_index = 0;
 
-      c = getopt_long( argc, argv, "hstVv", long_options, &option_index );
+      c = getopt_long( argc, argv, "ho:stVv", long_options, &option_index );
 
       /* Detect the end of the options. */
       if ( c == -1 )
@@ -104,6 +108,11 @@ options_cmdline( struct options *p, int argc, char *argv[] )
          case 'h':
             options_helpmsg( stdout );
             exit( 0 );
+
+         case 'o':
+            p->outname = realloc( p->outname, ( 1 + strlen( optarg ) ) * sizeof ( char ) );
+            strcpy( p->outname, optarg );
+            break;
 
          case 'V':
             /* printf( " --verbose\n" ); */

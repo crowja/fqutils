@@ -20,11 +20,12 @@
 
 /*** main() ***/
 
-int
-main( int argc, char *argv[] )
+int main( int argc, char *argv[] )
 {
+   FILE       *out_a, *out_b;
    char       *h1, *h2, *s, *q;
    char       *id = NULL;
+   char       *outname_a = NULL, *outname_b = NULL;
    int         i;
    struct options *o = options_new(  );
    struct tokenset *t = tokenset_new(  );
@@ -32,6 +33,11 @@ main( int argc, char *argv[] )
 
    /* Get the command line options */
    options_cmdline( o, argc, argv );
+
+   if ( _IS_NULL( o->outname ) || strlen( o->outname ) == 0 ) {
+      o->outname = realloc(o->outname, 11 * sizeof(char));
+      strcpy(o->outname, "TAP_SPLITQ");
+   }
 
    /* Read to id files */
    for ( i = o->optind; i < argc; i++ ) {
@@ -63,16 +69,44 @@ main( int argc, char *argv[] )
       linereader_free( z );
    }
 
-   /* printf("TOKENSET COUNT %d\n", tokenset_count(t)); */
+
+   outname_a = realloc( outname_a, sizeof ( char ) * ( 6 + strlen( o->outname ) ) );
+   strcpy( outname_a, o->outname );
+   strcat( outname_a, "_a.fq" );
+   out_a = fopen( outname_a, "wb" );
+   if ( _IS_NULL( out_a ) ) {
+      fprintf( stderr, "Could not open first output file \"%s\"\n", outname_a );
+      exit( 1 );
+   }
+
+   outname_b = realloc( outname_b, sizeof ( char ) * ( 6 + strlen( o->outname ) ) );
+   strcpy( outname_b, o->outname );
+   strcat( outname_b, "_b.fq" );
+   out_b = fopen( outname_b, "wb" );
+   if ( _IS_NULL( out_b ) ) {
+      fprintf( stderr, "Could not open second output file \"%s\"\n", outname_b );
+      exit( 1 );
+   }
+
 
    while ( fqreader_next( fq, &h1, &h2, &s, &q ) ) {
 
       utils_extract_id( &id, h1 );               /* get the identifier from header 1 */
+
       if ( tokenset_exists( t, id ) )
-         printf( "@%s\n%s\n+%s\n%s\n", h1, s, h2, q );
+         fprintf( out_a, "@%s\n%s\n+%s\n%s\n", h1, s, h2, q );
+
+      else
+         fprintf( out_b, "@%s\n%s\n+%s\n%s\n", h1, s, h2, q );
    }
 
-   fqreader_new(fq);
+   fclose( out_a );
+   fclose( out_b );
+
+   _FREE( id );
+   _FREE( outname_a );
+   _FREE( outname_b );
+   fqreader_free( fq );
    options_free( o );
    tokenset_free( t );
 
