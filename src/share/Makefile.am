@@ -8,6 +8,7 @@ libshare_a_SOURCES = \
   strutils.c strutils.h \
   tokenset.c tokenset.h \
   uthash.h \
+  utils.c utils.h \
   varstr.c varstr.h
 
 clean-generic:

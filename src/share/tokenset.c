@@ -14,7 +14,7 @@
 #endif
 #define _FREE(p)      ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
 
-static const char version[] = "20120622";
+static const char version[] = "20120905";
 
 struct _token {
    char       *text;
@@ -101,7 +101,11 @@ tokenset_add( struct tokenset *p, char *n )
 
    s->id = p->count;
 
+#if 0
    HASH_ADD_STR( p->tokens, text, s );
+#else
+   HASH_ADD_KEYPTR( hh, p->tokens, s->text, strlen( s->text ), s );
+#endif
 
    p->count += 1;                                /* ready to map next entry */
 
@@ -126,7 +130,6 @@ tokenset_exists( struct tokenset *p, char *n )
    HASH_FIND_STR( p->tokens, n, s );
 
    return _IS_NULL( s ) ? 0 : 1;
-
 }
 
 /*** tokenset_get() ***/

@@ -18,13 +18,13 @@
 #endif
 #define _FREE(p)                 ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
 
-
 /*** main() ***/
 
 int
 main( int argc, char *argv[] )
 {
    char       *h1, *h2, *s, *q;
+   char       *id = NULL;
    int         i;
    struct options *o = options_new(  );
    struct tokenset *t = tokenset_new(  );
@@ -63,7 +63,13 @@ main( int argc, char *argv[] )
       linereader_free( z );
    }
 
+   /* printf("TOKENSET COUNT %d\n", tokenset_count(t)); */
+
    while ( fqreader_next( fq, &h1, &h2, &s, &q ) ) {
+
+      utils_extract_id( &id, h1 );               /* get the identifier from header 1 */
+      if ( tokenset_exists( t, id ) )
+         printf( "@%s\n%s\n+%s\n%s\n", h1, s, h2, q );
    }
 
    options_free( o );
