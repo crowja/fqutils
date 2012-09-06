@@ -69,7 +69,7 @@ void options_helpmsg( FILE *out )
    fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
    fprintf( out, "%s\n", "-o, --out <outname>" );
-   fprintf( out, "%s%s\n", indent, "Write output to <outname>_A.fq and <outname>_B.fq; default: TAP_SQLITQ." );
+   fprintf( out, "%s%s\n", indent, "Write output to <outname>_A.fq and <outname>_B.fq; default: ./FQU." );
    fprintf( out, "%s\n", "-q, --quiet" );
    fprintf( out, "%s%s\n", indent, "Run quietly." );
    fprintf( out, "%s\n", "-V, --verbosity" );

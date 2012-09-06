@@ -35,8 +35,8 @@ int main( int argc, char *argv[] )
    options_cmdline( o, argc, argv );
 
    if ( _IS_NULL( o->outname ) || strlen( o->outname ) == 0 ) {
-      o->outname = realloc(o->outname, 11 * sizeof(char));
-      strcpy(o->outname, "TAP_SPLITQ");
+      o->outname = realloc(o->outname, 4 * sizeof(char));
+      strcpy(o->outname, "FQU");
    }
 
    /* Read to id files */
