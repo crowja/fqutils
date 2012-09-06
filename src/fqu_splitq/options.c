@@ -33,8 +33,6 @@ options_new( void )
 
    tp->fname = NULL;
    tp->quiet_flag = 0;
-   tp->squash_flag = 0;
-   tp->tabs_flag = 0;
    tp->verbosity = 0;
 
    return tp;
@@ -62,34 +60,18 @@ options_helpmsg( FILE *out )
    char        indent[] = "        ";
 
    /*            "------------------------------------------------------------------------------80" */
-   fprintf( out, "USAGE: %s [options] [<infile1> ...]\n", _I_AM );
-   fprintf( out, "Streams the contents of <infile1> ... to stdout as text; uses stdin otherwise. \n" );
+   fprintf( out, "USAGE: %s [options] <infile1> <infile2>\n", _I_AM );
+   fprintf( out, "Assesses if <infile1> and <infile2> are pairwise concordant. Records are read\n" );
+   fprintf( out, "one at a time from both files, and identifier pairing is checked. Nonzero exit\n" );
+   fprintf( out, "code on error or if nonpairing is detected.\n" );
    fprintf( out, "\nOPTIONS:\n" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
    fprintf( out, "%s\n", "-q, --quiet" );
    fprintf( out, "%s%s\n", indent, "Run quietly." );
-   fprintf( out, "%s\n", "-s, --squash" );
-   fprintf( out, "%s%s\n", indent, "Attempt to reduce the size of each record. Currently this" );
-   fprintf( out, "%s%s\n", indent, "simply replaces the second header in each record with a blank." );
-   fprintf( out, "%s\n", "-t, --tab-delimited" );
-   /*            "------------------------------------------------------------------------------80" */
-   fprintf( out, "%s%s\n", indent, "Write the output as four tab-delimited columns. Format is" );
-   fprintf( out, "%s%s\n", indent, "header_1[tab]sequence_string[tab]header_2[tab]tquality_string." );
    fprintf( out, "%s\n", "-V, --verbosity" );
    fprintf( out, "%s%s\n", indent, "Increase the level of reporting, multiples accumulate." );
    fprintf( out, "%s\n", "-v, --version" );
    fprintf( out, "%s%s\n", indent, "Print the version information and exit." );
-   fprintf( out, "\nEXAMPLES:\n" );
-   fprintf( out, "# Standard text file in\n" );
-   fprintf( out, "%s in.fastq > out.fastq\n\n", _I_AM );
-   fprintf( out, "# Gzip compressed file input\n" );
-   fprintf( out, "%s in.fastq.gz > out.fastq\n\n", _I_AM );
-   fprintf( out, "# Standard text on stdin\n" );
-   fprintf( out, "gunzip -c in.fastq.gz | %s > out.fastq\n\n", _I_AM );
-   fprintf( out, "# Compressed stream on stdin\n" );
-   fprintf( out, "cat in.fastq.gz | %s > out.fastq\n\n", _I_AM );
-   fprintf( out, "# Mixed input\n" );
-   fprintf( out, "%s in1.fq in2.fq.gz in3.fq > out.fastq\n", _I_AM );
 }
 
 
@@ -101,8 +83,6 @@ options_cmdline( struct options *p, int argc, char *argv[] )
    int         c;
    static struct option long_options[] = {
       {"help", no_argument, 0, 'h'},
-      {"squash", no_argument, 0, 's'},
-      {"tab-delimited", no_argument, 0, 't'},
       {"verbose", no_argument, 0, 'V'},
       {"version", no_argument, 0, 'v'},
       {0, 0, 0, 0}
@@ -125,16 +105,8 @@ options_cmdline( struct options *p, int argc, char *argv[] )
             options_helpmsg( stdout );
             exit( 0 );
 
-         case 's':
-            p->squash_flag = 1;
-            break;
-
-         case 't':
-            p->tabs_flag = 1;
-            break;
-
          case 'V':
-            printf( " --verbose\n" );
+            /* printf( " --verbose\n" ); */
             p->verbosity += 1;
             break;
 

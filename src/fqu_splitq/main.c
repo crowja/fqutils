@@ -1,8 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "main.h"
 #include "options.h"
 #include "fqreader.h"
+#include "linereader.h"
+#include "strutils.h"
+#include "tokenset.h"
 
 #ifdef  _IS_NULL
 #undef  _IS_NULL
@@ -21,62 +25,49 @@ int
 main( int argc, char *argv[] )
 {
    char       *h1, *h2, *s, *q;
-   unsigned    i;
+   int         i;
    struct options *o = options_new(  );
-   struct fqreader *z;
+   struct tokenset *t = tokenset_new(  );
+   struct fqreader *fq = fqreader_new( NULL );
 
    /* Get the command line options */
    options_cmdline( o, argc, argv );
 
-   if ( o->optind == argc ) {                    /* read from stdin */
+   /* Read to id files */
+   for ( i = o->optind; i < argc; i++ ) {
 
-      z = fqreader_new( NULL );
+      char       *line;
+      struct linereader *z = linereader_new(  );
 
-      while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
+      linereader_init( z, argv[i] );
 
-         if ( o->squash_flag )
-            h2[0] = '\0';
-
-         if ( o->tabs_flag )
-            printf( "%s\t%s\t%s\t%s\n", h1, s, h2, q );
-
-         else
-            printf( "@%s\n%s\n+%s\n%s\n", h1, s, h2, q );
+      if ( _IS_NULL( z ) ) {
+         fprintf( stderr, "[ERROR] %s: Cannot open input file \"%s\"\n", _I_AM, argv[i] );
+         exit( 1 );
       }
 
-      fqreader_free( z );
+      while ( ( line = linereader_next( z ) ) ) {
+         unsigned    len;
+
+         stru_trim( line );
+
+         if ( line[0] == '#' || stru_is_ws( line ) )
+            continue;
+
+         len = strcspn( line, "\f\n\r\t\v " );
+         line[len] = '\0';
+
+         tokenset_add( t, line );
+      }
+
+      linereader_free( z );
    }
 
-   else {                                        /* read from input files */
-
-      int         i;
-
-      for ( i = o->optind; i < argc; i++ ) {
-
-         z = fqreader_new( argv[i] );
-
-         if ( _IS_NULL( z ) ) {
-            fprintf( stderr, "[ERROR] %s: Cannot open input file \"%s\"\n", _I_AM, argv[i] );
-            exit( 1 );
-         }
-
-         while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
-
-            if ( o->squash_flag )
-               h2[0] = '\0';
-
-            if ( o->tabs_flag )
-               printf( "%s\t%s\t%s\t%s\n", h1, s, h2, q );
-
-            else
-               printf( "@%s\n%s\n+%s\n%s\n", h1, s, h2, q );
-         }
-
-         fqreader_free( z );
-      }
+   while ( fqreader_next( fq, &h1, &h2, &s, &q ) ) {
    }
 
    options_free( o );
+   tokenset_free( t );
 
    return 0;
 }
