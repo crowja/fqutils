@@ -72,7 +72,7 @@ int main( int argc, char *argv[] )
 
    outname_a = realloc( outname_a, sizeof ( char ) * ( 6 + strlen( o->outname ) ) );
    strcpy( outname_a, o->outname );
-   strcat( outname_a, "_a.fq" );
+   strcat( outname_a, "_A.fq" );
    out_a = fopen( outname_a, "wb" );
    if ( _IS_NULL( out_a ) ) {
       fprintf( stderr, "Could not open first output file \"%s\"\n", outname_a );
@@ -81,7 +81,7 @@ int main( int argc, char *argv[] )
 
    outname_b = realloc( outname_b, sizeof ( char ) * ( 6 + strlen( o->outname ) ) );
    strcpy( outname_b, o->outname );
-   strcat( outname_b, "_b.fq" );
+   strcat( outname_b, "_B.fq" );
    out_b = fopen( outname_b, "wb" );
    if ( _IS_NULL( out_b ) ) {
       fprintf( stderr, "Could not open second output file \"%s\"\n", outname_b );

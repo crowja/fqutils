@@ -107,7 +107,7 @@ void options_cmdline( struct options *p, int argc, char *argv[] )
             break;
 
          case 'V':
-            printf( " --verbose\n" );
+            /* printf( " --verbose\n" ); */
             p->verbosity += 1;
             break;
 

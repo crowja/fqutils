@@ -65,6 +65,7 @@ options_helpmsg( FILE *out )
    fprintf( out, "USAGE: %s [options] [<infile1> ...]\n", _I_AM );
    fprintf( out, "Streams the contents of <infile1> ... to stdout as text; uses stdin otherwise. \n" );
    fprintf( out, "\nOPTIONS:\n" );
+   fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
    fprintf( out, "%s\n", "-q, --quiet" );
    fprintf( out, "%s%s\n", indent, "Run quietly." );
@@ -134,7 +135,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
             break;
 
          case 'V':
-            printf( " --verbose\n" );
+            /* printf( " --verbose\n" ); */
             p->verbosity += 1;
             break;
 

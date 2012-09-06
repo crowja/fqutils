@@ -62,6 +62,7 @@ void options_helpmsg( FILE *out )
    fprintf( out, "one at a time from both files, and identifier pairing is checked. Nonzero exit\n" );
    fprintf( out, "code on error or if nonpairing is detected.\n" );
    fprintf( out, "\nOPTIONS:\n" );
+   fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
    fprintf( out, "%s\n", "-q, --quiet" );
    fprintf( out, "%s%s\n", indent, "Run quietly." );

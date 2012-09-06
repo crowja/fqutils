@@ -76,7 +76,7 @@ options_helpmsg( FILE *out )
    fprintf( out, "%s%s\n", indent, "the second header in each record with a blank." );
    fprintf( out, "%s\n", "-t, --tab-delimited" );
    fprintf( out, "%s%s\n", indent, "Write the output as four tab-delimited columns. Format is" );
-   fprintf( out, "%s%s\n", indent, "header_1[tab]sequence_string[tab]header_2[tab]tquality_string." );
+   fprintf( out, "%s%s\n", indent, "header_1[tab]sequence_string[tab]header_2[tab]quality_string." );
    fprintf( out, "%s\n", "-V, --verbosity" );
    fprintf( out, "%s%s\n", indent, "Increase the level of reporting, multiples accumulate." );
    fprintf( out, "%s\n", "-v, --version" );
@@ -139,7 +139,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
             break;
 
          case 'V':
-            printf( " --verbose\n" );
+            /* printf( " --verbose\n" ); */
             p->verbosity += 1;
             break;
 

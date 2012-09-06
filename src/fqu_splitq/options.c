@@ -62,7 +62,7 @@ void options_helpmsg( FILE *out )
    fprintf( out, "USAGE: cat in.fq | %s [options] <id_file1> ...\n", _I_AM );
    fprintf( out, "Splits a file in fastq file into two fastq files based on a collection of\n");
    fprintf( out, "read identifiers specified in <id_file1> ...\n\n");
-   fprintf( out, "Two files are written: <out>_a.fq and <out>_b.fq. Reads specied in any of the\n");
+   fprintf( out, "Two files are written: <out>_A.fq and <out>_B.fq. Reads specied in any of the\n");
    fprintf( out, "id_files are written to the former, and the remainder to the latter. Note that\n");
    fprintf( out, "the relative order of the reads in the input is preserved in the output files.\n");
    fprintf( out, "\nOPTIONS:\n" );
