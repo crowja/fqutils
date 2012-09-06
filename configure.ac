@@ -1,6 +1,6 @@
 AC_PREREQ([2.59])
 
-AC_INIT([fqutils], [0.0.1c], [jac@ncgr.org])
+AC_INIT([fqutils], [0.0.1d], [jac@ncgr.org])
 AM_INIT_AUTOMAKE([1.10 -Wall foreign no-define dist-bzip2 no-installinfo no-texinfo.tex])
 
 AC_CONFIG_HEADERS([config.h])
