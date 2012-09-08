@@ -11,3 +11,7 @@ maintainer-scrub:
 clean-generic:
 	rm -f core core.* a.out *.BAK *.bak *~
 
+predist:
+	t=`date +%s`; $(MAKE) VERSION="$(VERSION)-$$t" dist
+
+###t=`date +%s`; $(MAKE) VERSION="$(VERSION)" CPPFLAGS="-DVERSION_QUALIFIER=\"$$t\" $(CPPFLAGS)" dist

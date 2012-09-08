@@ -1,5 +1,6 @@
 bin_PROGRAMS = fqu_summary
-AM_CPPFLAGS = -I../share -I../..
+AM_CPPFLAGS = -I$(top_srcdir)/src/share
+#AM_CPPFLAGS = -I../share -I../..
 LDADD = ../share/libshare.a -lz
 
 fqu_summary_SOURCES = main.c main.h options.c options.h
