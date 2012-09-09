@@ -175,7 +175,7 @@ _update_quality_quantiles( void )
 #if 0
             qualquants[QUALQUANTS * i + k] = j - 1 + ( target - sum0 ) / ( sum1 - sum0 );
 #else
-            qualquants[QUALQUANTS * i + k] = j;
+            qualquants[QUALQUANTS * i + k] = j;  /* FIXME might be trouble if this never gets set */
 #endif
             k += 1;
          }
@@ -286,6 +286,8 @@ main( int argc, char *argv[] )
       printf( "\t%d", basecounts[BASESTATES * i + 6] );
    printf( "\n" );
 
+#if 0                                            /* FIXME FIXME FIXME the quality stuff is buggy. Use problem_in.fq or problem_in.fq2 to diagnose */
+
    /* Per read GC content histogram */
    printf( "histogram_gc_per_read" );
    for ( i = 0; i < GCTAB_SIZE; i++ )
@@ -298,9 +300,10 @@ main( int argc, char *argv[] )
    for ( j = 0; j < QUALQUANTS; j++ ) {
       printf( "qualquants_%d", j + 1 );
       for ( i = 0; i < maxpos; i++ )
-         printf( "\t%0.1f", qualquants[QUALQUANTS * i + j] - qoffset );
+         printf( "\t%0.1e", qualquants[QUALQUANTS * i + j] - qoffset );
       printf( "\n" );
    }
+#endif
 
 
    _FREE( basecounts );
