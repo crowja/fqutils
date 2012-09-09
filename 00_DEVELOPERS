@@ -21,6 +21,7 @@ Steps:
      $ make distclean                 # clean the directories
      $ vi configure.ac                # set %PACKAGE_VERSION%
      $ ./autogen.sh                   # create the new configure script
+     $ make distcheck                 # creates the distribution tarfile, etc.
      $ rm 00_DEVELOPERS               # this file
 
 ................................................................................
@@ -31,3 +32,4 @@ References to stub names "hello" and "goodbye" are in:
      src/Makefile.am   # SUBDIRS variable
      src/hello         # directory and its contents
      src/goodbye       # directory and its contents
+

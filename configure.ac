@@ -1,7 +1,9 @@
 AC_PREREQ([2.59])
 
-AC_INIT([fqutils], [0.0.4], [jac@ncgr.org])
+##AC_INIT([fqutils], [0.0.4], [jac@ncgr.org])
+AC_INIT([fqutils], m4_esyscmd_s([ver='0.1.0'; if test z$PREDIST = z; then echo $ver; else date +$ver-%s; fi]), [jac@ncgr.org])
 AM_INIT_AUTOMAKE([1.10 -Wall foreign no-define dist-bzip2 no-installinfo no-texinfo.tex])
+
 
 AC_CONFIG_HEADERS([config.h])
 
