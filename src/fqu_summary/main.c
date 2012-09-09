@@ -18,9 +18,9 @@
 #endif
 #define _FREE(p)                 ((NULL == (p)) ? (0) : (free((p)), (p) = NULL))
 
-#define  BASESTATES              7
-#define  QUALSTATES              128
-#define  GCTAB_SIZE              20
+#define  BASESTATES              7               /* a, c, g, t, u, n, other */
+#define  QUALSTATES              128             /* total number of distinct quality scores */
+#define  GCTAB_SIZE              20              /* buckets in the histogram */
 #define  QUALQUANTS              3               /* 3 for quartiles */
 
 static unsigned *basecounts = NULL;
@@ -30,7 +30,8 @@ static unsigned maxpos = 0;
 static unsigned nseqs = 0;
 static unsigned gctab[GCTAB_SIZE];
 
-static int _resize( unsigned len )
+static int
+_resize( unsigned len )
 {
    unsigned    i, j;
 
@@ -56,7 +57,8 @@ static int _resize( unsigned len )
 }
 
 #ifdef KMER_TEST
-static void _update_kmer_stats( char *x, unsigned k )
+static void
+_update_kmer_stats( char *x, unsigned k )
 {
    unsigned    i;
    unsigned    len = strlen( x );
@@ -70,14 +72,16 @@ static void _update_kmer_stats( char *x, unsigned k )
 }
 #endif
 
-static void _update_header_stats( char *x )
+static void
+_update_header_stats( char *x )
 {
    unsigned    i;
    unsigned    len = strlen( x );
    unsigned    skip = 0;
 }
 
-static void _update_sequence_stats( char *x )
+static void
+_update_sequence_stats( char *x )
 {
    unsigned    i, j;
    unsigned    len = strlen( x );
@@ -133,7 +137,8 @@ static void _update_sequence_stats( char *x )
    }
 }
 
-static void _update_quality_stats( char *x )
+static void
+_update_quality_stats( char *x )
 {
    unsigned    i, j;
    unsigned    len = strlen( x );
@@ -146,7 +151,8 @@ static void _update_quality_stats( char *x )
 }
 
 
-static void _update_quality_quantiles( void )
+static void
+_update_quality_quantiles( void )
 {
    unsigned    i, j, k;
 
@@ -178,7 +184,8 @@ static void _update_quality_quantiles( void )
    }
 }
 
-int _guess_qoffset( void )
+int
+_guess_qoffset( void )
 {
    unsigned    i, j;
    unsigned    count_all = 0;
@@ -202,7 +209,8 @@ int _guess_qoffset( void )
 
 /*** main() ***/
 
-int main( int argc, char *argv[] )
+int
+main( int argc, char *argv[] )
 {
    unsigned    i, j, k = 10;
    char       *h1, *h2, *s, *q;
@@ -229,7 +237,7 @@ int main( int argc, char *argv[] )
       _update_header_stats( h1 );
       _update_sequence_stats( s );
 #ifdef KMER_TEST
-      _update_kmer_stats( s, k ); 
+      _update_kmer_stats( s, k );
 #endif
       _update_quality_stats( q );
    }
@@ -288,9 +296,9 @@ int main( int argc, char *argv[] )
    _update_quality_quantiles(  );
 
    for ( j = 0; j < QUALQUANTS; j++ ) {
-      printf( "qualquants_%d", j + 1);
+      printf( "qualquants_%d", j + 1 );
       for ( i = 0; i < maxpos; i++ )
-         printf( "\t%0.1e", qualquants[QUALQUANTS * i + j] - qoffset );
+         printf( "\t%0.1f", qualquants[QUALQUANTS * i + j] - qoffset );
       printf( "\n" );
    }
 
