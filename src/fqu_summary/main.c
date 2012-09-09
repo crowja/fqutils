@@ -37,7 +37,7 @@ _resize( unsigned len )
 
    basecounts = realloc( basecounts, BASESTATES * len * sizeof ( unsigned ) );
    qualcounts = realloc( qualcounts, QUALSTATES * len * sizeof ( unsigned ) );
-   qualquants = realloc( qualquants, QUALQUANTS * len * sizeof ( unsigned ) );
+   qualquants = realloc( qualquants, QUALQUANTS * len * sizeof ( double ) );
 
    for ( i = maxpos; i < len; i++ ) {
 
@@ -286,8 +286,6 @@ main( int argc, char *argv[] )
       printf( "\t%d", basecounts[BASESTATES * i + 6] );
    printf( "\n" );
 
-#if 0                                            /* FIXME FIXME FIXME the quality stuff is buggy. Use problem_in.fq or problem_in.fq2 to diagnose */
-
    /* Per read GC content histogram */
    printf( "histogram_gc_per_read" );
    for ( i = 0; i < GCTAB_SIZE; i++ )
@@ -303,8 +301,6 @@ main( int argc, char *argv[] )
          printf( "\t%0.1e", qualquants[QUALQUANTS * i + j] - qoffset );
       printf( "\n" );
    }
-#endif
-
 
    _FREE( basecounts );
    fqreader_free( z );
