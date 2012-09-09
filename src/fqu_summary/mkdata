@@ -2,9 +2,11 @@
 
 use strict;
 
-foreach ( 1 .. 10 ) {
+my $readlen = 50;
+
+foreach ( 1 .. 20 ) {
     foreach my $i ( 1 .. 20 ) {
-        my @c = split(//, chr( 64 + $i ) x 120);
+        my @c = split(//, chr( 64 + $i ) x $readlen);
 
         print "\@MIKITA:$i:stan\n";
         while (@c) {
@@ -17,7 +19,7 @@ foreach ( 1 .. 10 ) {
         }
         print "\n";
 
-        my @q = split(//, lc chr( 64 + $i ) x 120);
+        my @q = split(//, lc chr( 64 + $i ) x $readlen);
 
         print "+extra_header_for:MIKITA:$i:stan\n";
         while (@q) {
