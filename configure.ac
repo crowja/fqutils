@@ -32,7 +32,7 @@ AC_PROG_INSTALL
 AC_PROG_RANLIB
 AC_PROG_CC
 
-AC_CHECK_LIB([z], [gzbuffer], [], [echo "@<:@1;31m*** FAILED ***@<:@0m Could not locate an appropriate libz; requires at least Zlib 1.2.4." 2>&1; exit 1])
+AC_CHECK_LIB([z], [gzbuffer], [], [echo "@<:@1;31m*** FAILED ***@<:@0m Could not locate an appropriate libz; requires at least Zlib 1.2.4. Perhaps you need to specify LDFLAGS?" 2>&1; exit 1])
 
 AC_OUTPUT
 

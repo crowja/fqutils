@@ -298,7 +298,7 @@ main( int argc, char *argv[] )
    for ( j = 0; j < QUALQUANTS; j++ ) {
       printf( "qualquants_%d", j + 1 );
       for ( i = 0; i < maxpos; i++ )
-         printf( "\t%0.1e", qualquants[QUALQUANTS * i + j] - qoffset );
+         printf( "\t%0.1f", qualquants[QUALQUANTS * i + j] - qoffset );
       printf( "\n" );
    }
 
