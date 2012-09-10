@@ -29,6 +29,11 @@ AC_CANONICAL_HOST
 ###)
 
 ### FIXME --- add handling for --with-static, --with-static=yes, --with-static=no
+AC_ARG_ENABLE([static],
+AS_HELP_STRING([--enable-static], [Try to build static binaries.]),
+[LDFLAGS=["-static ${LDFLAGS}"]],
+[]
+)
 
 AC_PROG_INSTALL
 AC_PROG_RANLIB
