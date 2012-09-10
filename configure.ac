@@ -28,6 +28,8 @@ AC_CANONICAL_HOST
 ### [LDFLAGS=["-L${with_zlib_prefix}/lib ${LDFLAGS}]" CPPFLAGS=["-I${with_zlib_prefix}/include ${CPPFLAGS}"]]
 ###)
 
+### FIXME --- add handling for --with-static, --with-static=yes, --with-static=no
+
 AC_PROG_INSTALL
 AC_PROG_RANLIB
 AC_PROG_CC
@@ -36,6 +38,6 @@ AC_CHECK_LIB([z], [gzbuffer], [], [echo "@<:@1;31m*** FAILED ***@<:@0m Could n
 
 AC_OUTPUT
 
-echo "\tCPPFLAGS\t${CPPFLAGS}"
-echo "\tLDFLAGS \t${LDFLAGS}"
+printf "\tCPPFLAGS\t%s\n" ${CPPFLAGS}
+printf "\tLDFLAGS \t%s\n" ${LDFLAGS}
 
