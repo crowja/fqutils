@@ -49,7 +49,7 @@ int main( int argc, char *argv[] )
    }
 
 
-   /* Read to id files */
+   /* Read the id files */
    for ( i = o->optind; i < argc; i++ ) {
 
       char       *line;
@@ -78,8 +78,6 @@ int main( int argc, char *argv[] )
 
       linereader_free( z );
    }
-
-
 
    outname_a = realloc( outname_a, sizeof ( char ) * ( 6 + strlen( o->outname ) ) );
    strcpy( outname_a, o->outname );
