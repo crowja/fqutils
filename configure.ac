@@ -21,6 +21,7 @@ tests/Makefile
 ])
 
 AC_CANONICAL_HOST
+AX_PATH_LIB_PCRE
 
 ###AC_ARG_WITH([zlib-prefix],
 ### AS_HELP_STRING([--with-zlib-prefix=<path>], [Look for zlib includes in <path>/include and libraries in <path>/lib]),
@@ -38,6 +39,7 @@ AS_HELP_STRING([--enable-static], [Try to build static binaries.]),
 AC_PROG_INSTALL
 AC_PROG_RANLIB
 AC_PROG_CC
+
 
 AC_CHECK_LIB([z], [gzbuffer], [], [echo "@<:@1;31m*** FAILED ***@<:@0m Could not locate an appropriate libz; requires at least Zlib 1.2.4. Perhaps you need to specify LDFLAGS?" 2>&1; exit 1])
 
