@@ -60,11 +60,11 @@ void options_helpmsg( FILE *out )
 
    /*            "------------------------------------------------------------------------------80" */
    fprintf( out, "USAGE: cat in.fq | %s [options] <id_file1> ...\n", _I_AM );
-   fprintf( out, "Splits a file in fastq file into two fastq files based on a collection of\n");
-   fprintf( out, "read identifiers specified in <id_file1> ...\n\n");
-   fprintf( out, "Two files are written: <out>_A.fq and <out>_B.fq. Reads specified in any of the\n");
-   fprintf( out, "id_files are written to the former, and the remainder to the latter. Note that\n");
-   fprintf( out, "the relative order of the reads in the input is preserved in the output files.\n");
+   fprintf( out, "Splits a file in fastq file into two fastq files based on a collection of\n" );
+   fprintf( out, "read identifiers specified in <id_file1> ...\n\n" );
+   fprintf( out, "Two files are written: <out>_A.fq and <out>_B.fq. Reads specified in any of the\n" );
+   fprintf( out, "id_files are written to the former, and the remainder to the latter. Note that\n" );
+   fprintf( out, "the relative order of the reads in the input is preserved in the output files.\n" );
    fprintf( out, "\nOPTIONS:\n" );
    fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );

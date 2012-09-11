@@ -5,6 +5,7 @@
 #include "options.h"
 #include "fqreader.h"
 #include "linereader.h"
+#include "mkdirp.h"
 #include "strutils.h"
 #include "tokenset.h"
 
@@ -25,7 +26,7 @@ int main( int argc, char *argv[] )
    FILE       *out_a, *out_b;
    char       *h1, *h2, *s, *q;
    char       *id = NULL;
-   char       *outname_a = NULL, *outname_b = NULL;
+   char       *outname_a = NULL, *outname_b = NULL, *outdirname = NULL;
    int         i;
    struct options *o = options_new(  );
    struct tokenset *t = tokenset_new(  );
@@ -35,9 +36,18 @@ int main( int argc, char *argv[] )
    options_cmdline( o, argc, argv );
 
    if ( _IS_NULL( o->outname ) || strlen( o->outname ) == 0 ) {
-      o->outname = realloc(o->outname, 4 * sizeof(char));
-      strcpy(o->outname, "FQU");
+      o->outname = realloc( o->outname, 4 * sizeof ( char ) );
+      strcpy( o->outname, "FQU" );
    }
+
+   /* Create the output directory if necessary */
+   outdirname = realloc( outdirname, sizeof ( char ) * ( 2 + strlen( o->outname ) ) );
+   strcpy( outdirname, o->outname );
+   if ( strchr( outdirname, '/' ) ) {            /* not the current directory */
+      dirname( outdirname );
+      mkdirp( outdirname, S_IRWXU | S_IRWXG | S_IRWXO );
+   }
+
 
    /* Read to id files */
    for ( i = o->optind; i < argc; i++ ) {
@@ -68,6 +78,7 @@ int main( int argc, char *argv[] )
 
       linereader_free( z );
    }
+
 
 
    outname_a = realloc( outname_a, sizeof ( char ) * ( 6 + strlen( o->outname ) ) );
