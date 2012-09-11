@@ -1,0 +1,36 @@
+#! /usr/bin/env perl
+
+use strict;
+
+my $count = 0;
+
+foreach ( 1 .. 40 ) {
+    $count += 1;
+    my $j = 65 + rand( 26 );
+    my $c = chr( $j );
+    my @c = split( //, $c x 50 );
+
+    print "\@MIKITA:$count:stan\tlkafjasldk jfklasjfkljsakldfj\n";
+    while ( @c ) {
+        if ( rand() < 0.1 ) {
+            print "\n";
+        }
+        else {
+            print shift( @c );
+        }
+    }
+    print "\n";
+
+    my @q = split( //, lc $c x 50 );
+
+    print "+extra_header_for:MIKITA:$count:stan kjsakj jkasaaskj ajkakj\n";
+    while ( @q ) {
+        if ( rand() < 0.1 ) {
+            print "\n";
+        }
+        else {
+            print shift( @q );
+        }
+    }
+    print "\n";
+}
