@@ -4,9 +4,6 @@
 #include "main.h"
 #include "options.h"
 #include "fqreader.h"
-#ifdef KMER_TEST
-#include "kmer.h"
-#endif
 
 #ifdef  _IS_NULL
 #undef  _IS_NULL
@@ -56,7 +53,6 @@ _resize( unsigned len )
    return 0;
 }
 
-#ifdef KMER_TEST
 static void
 _update_kmer_stats( char *x, unsigned k )
 {
@@ -66,11 +62,12 @@ _update_kmer_stats( char *x, unsigned k )
 
    for ( i = 0; i < len - k; i++ ) {
 
+#if 0
       if ( kmer_hash( k, &( x[i] ), &hash ) )
          continue;
+#endif
    }
 }
-#endif
 
 static void
 _update_header_stats( char *x )
@@ -236,9 +233,7 @@ main( int argc, char *argv[] )
       nseqs += 1;
       _update_header_stats( h1 );
       _update_sequence_stats( s );
-#ifdef KMER_TEST
       _update_kmer_stats( s, k );
-#endif
       _update_quality_stats( q );
    }
 
