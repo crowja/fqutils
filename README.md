@@ -15,13 +15,14 @@ the package provides the following:
 ## DEPENDENCIES
 
 The package is written in Standard C, and ought to be easily portable to all Unix-like
-systems. If it doesn't please let me know. It requires [Zlib](http://www.zlib.net/) 1.2.4
-or later, which in turn allows the tools to work transparently with text files as well as
-gzip-compressed files.
+systems. If this isn't the case please let me know. Fqutils requires [Zlib](http://www.zlib.net/) 1.2.4
+or later, which in turn allows the tools to work transparently with text FASTQ as well as
+gzip-compressed FASTQ.
 
 ## INSTALLATION
 
-    $ ./configure --prefix=/path/to/installdir
+    # Chdir into the source directory, then configure-make ...
+    $ ./configure --prefix=/path/to/install_dir
     $ make
     $ make check
     $ make install
@@ -34,6 +35,7 @@ to the configure script using the standard environment variables; for instance:
 
 ## EXAMPLES
 
+    # fqu_tidy
     $ cat foo.fq | fqu_tidy
     $ gunzip -c foo.fq.gz | fqu_tidy
     $ cat foo.fq.gz | fqu_tidy
@@ -41,6 +43,13 @@ to the configure script using the standard environment variables; for instance:
 The third example above demonstrates that gzipped FASTQ streams can be handled directly
 without explicit uncompression. 
 
+    # fqu_summary
+    $ fqu_summary foo.fq.gz > foo.fqsum
+    $ cat foo.fq | fqu_summary > foo.fqsum
+
+    # fqu_splitq
+    $ cat foo.fq | fqu_splitq --out baz idfile1.txt idfile2.txt
+    $ cat foo.fq.gz | fqu_splitq --out baz idfile1.txt idfile2.txt
 
 ## BUGS
 
