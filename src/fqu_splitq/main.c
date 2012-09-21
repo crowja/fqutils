@@ -21,7 +21,8 @@
 
 /*** main() ***/
 
-int main( int argc, char *argv[] )
+int
+main( int argc, char *argv[] )
 {
    FILE       *out_a, *out_b;
    char       *h1, *h2, *s, *q;

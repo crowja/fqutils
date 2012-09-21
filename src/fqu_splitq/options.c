@@ -22,7 +22,8 @@
 
 /*** options_new() ***/
 
-struct options *options_new( void )
+struct options *
+options_new( void )
 {
    struct options *tp;
 
@@ -41,7 +42,8 @@ struct options *options_new( void )
 
 /*** options_free() ***/
 
-void options_free( struct options *p )
+void
+options_free( struct options *p )
 {
    if ( _IS_NULL( p ) )
       return;
@@ -54,18 +56,20 @@ void options_free( struct options *p )
 
 /*** options_helpmsg() ***/
 
-void options_helpmsg( FILE *out )
+void
+options_helpmsg( FILE *out )
 {
-   char        indent[] = "        ";
+   char        indent[] = "      ";
 
    /*            "------------------------------------------------------------------------------80" */
-   fprintf( out, "USAGE: cat in.fq | %s [options] <id_file1> ...\n", _I_AM );
-   fprintf( out, "Splits a file in fastq file into two fastq files based on a collection of\n" );
-   fprintf( out, "read identifiers specified in <id_file1> ...\n\n" );
-   fprintf( out, "Two files are written: <out>_A.fq and <out>_B.fq. Reads specified in any of the\n" );
-   fprintf( out, "id_files are written to the former, and the remainder to the latter. Note that\n" );
-   fprintf( out, "the relative order of the reads in the input is preserved in the output files.\n" );
-   fprintf( out, "\nOPTIONS:\n" );
+   fprintf( out, "USAGE\n" );
+   fprintf( out, "cat in.fq | %s [options] <id_file1> ...\n", _I_AM );
+   fprintf( out, "Splits a stream in FASTQ format into two FASTQ files based on the collection of\n" );
+   fprintf( out, "sequence identifiers specified in <id_file1> ... Two files are written: <out>_A.fq and\n" );
+   fprintf( out, "<out>_B.fq, where <out> is specified by --out <out> as described below. Sequences specified\n" );
+   fprintf( out, "in any of the id_files are written to <out>_A.fq and the remainder to <out>_B.fq. Note that\n" );
+   fprintf( out, "the relative order of the sequences in the input is preserved in the output files.\n" );
+   fprintf( out, "\nOPTIONS\n" );
    fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
    fprintf( out, "%s\n", "-o, --out <outname>" );
@@ -81,7 +85,8 @@ void options_helpmsg( FILE *out )
 
 /*** options_cmdline() ***/
 
-void options_cmdline( struct options *p, int argc, char *argv[] )
+void
+options_cmdline( struct options *p, int argc, char *argv[] )
 {
    int         c;
    static struct option long_options[] = {

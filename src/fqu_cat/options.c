@@ -59,12 +59,15 @@ options_free( struct options *p )
 void
 options_helpmsg( FILE *out )
 {
-   char        indent[] = "        ";
+   char        indent[] = "      ";
 
    /*            "------------------------------------------------------------------------------80" */
-   fprintf( out, "USAGE: %s [options] [<infile1> ...]\n", _I_AM );
+   fprintf( out, "USAGE\n" );
+   fprintf( out, "%s [options] [<infile1> ...]\n", _I_AM );
    fprintf( out, "Streams the contents of <infile1> ... to stdout as text; uses stdin otherwise. \n" );
-   fprintf( out, "\nOPTIONS:\n" );
+   fprintf( out, "For well-formed input, the output is guaranteed to be in lazy-FASTQ format (i.e.,\n" );
+   fprintf( out, "four line records) even if the input contains multiline sequence or quality text.\n" );
+   fprintf( out, "\nOPTIONS\n" );
    fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
    fprintf( out, "%s\n", "-q, --quiet" );
@@ -75,12 +78,12 @@ options_helpmsg( FILE *out )
    fprintf( out, "%s\n", "-t, --tab-delimited" );
    /*            "------------------------------------------------------------------------------80" */
    fprintf( out, "%s%s\n", indent, "Write the output as four tab-delimited columns. Format is" );
-   fprintf( out, "%s%s\n", indent, "header_1[tab]sequence_string[tab]header_2[tab]tquality_string." );
+   fprintf( out, "%s%s\n", indent, "header_1[tab]sequence_string[tab]header_2[tab]quality_string." );
    fprintf( out, "%s\n", "-V, --verbosity" );
    fprintf( out, "%s%s\n", indent, "Increase the level of reporting, multiples accumulate." );
    fprintf( out, "%s\n", "-v, --version" );
    fprintf( out, "%s%s\n", indent, "Print the version information and exit." );
-   fprintf( out, "\nEXAMPLES:\n" );
+   fprintf( out, "\nEXAMPLES\n" );
    fprintf( out, "# Standard text file in\n" );
    fprintf( out, "%s in.fastq > out.fastq\n\n", _I_AM );
    fprintf( out, "# Gzip compressed file input\n" );

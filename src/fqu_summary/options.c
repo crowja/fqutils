@@ -57,13 +57,15 @@ options_free( struct options *p )
 void
 options_helpmsg( FILE *out )
 {
-   char        indent[] = "        ";
+   char        indent[] = "      ";
 
    /*            "------------------------------------------------------------------------------80" */
-   fprintf( out, "USAGE: %s [options] [<infile>]\n", _I_AM );
-   fprintf( out, "Reads <infile> and writes a simple summary of the contents.\n" );
-   fprintf( out, "Input is from <infile> if present, otherwise stdin.\n" );
-   fprintf( out, "\nOPTIONS:\n" );
+   fprintf( out, "USAGE\n" );
+   fprintf( out, "%s [options] [<infile>]\n", _I_AM );
+   fprintf( out, "Reads <infile>, assumed to be nucleotide sequences, and writes a simple summary.\n" );
+   fprintf( out, "Input is from <infile> if present, otherwise stdin. See REPORT STATISTICS below.\n" );
+
+   fprintf( out, "\nOPTIONS\n" );
    fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
    fprintf( out, "%s\n", "-q, --quiet" );
@@ -72,6 +74,40 @@ options_helpmsg( FILE *out )
    fprintf( out, "%s%s\n", indent, "Increase the level of reporting, multiples accumulate." );
    fprintf( out, "%s\n", "-v, --version" );
    fprintf( out, "%s%s\n", indent, "Print the version information and exit." );
+
+   fprintf( out, "\nREPORT STATISTICS\n" );
+   fprintf( out, "Summary statistics are reported in a simple tab-delimited key-value format, designed\n" );
+   fprintf( out, "to be easily machine-readable. For multiattribute values, for example the counts per\n" );
+   fprintf( out, "position reported for basecounts_a, individual attributes are likewise tab-delimited.\n\n" );
+   fprintf( out, "seqcount\n" );
+   fprintf( out, "%sTotal number of sequences in the collection.\n", indent );
+   fprintf( out, "maxpos\n" );
+   fprintf( out, "%sMaximum position observed, a.k.a., length of longest sequence.\n", indent );
+   fprintf( out, "qualities_offset\n" );
+   fprintf( out, "%sEstimated quality offset (33 or 64).\n", indent );
+   fprintf( out, "basecounts_a\n" );
+   fprintf( out, "%sTotal counts observed for A in each position.\n", indent );
+   fprintf( out, "basecounts_c\n" );
+   fprintf( out, "%sTotal counts observed for C in each position.\n", indent );
+   fprintf( out, "basecounts_g\n" );
+   fprintf( out, "%sTotal counts observed for G in each position.\n", indent );
+   fprintf( out, "basecounts_t\n" );
+   fprintf( out, "%sTotal counts observed for T in each position.\n", indent );
+   fprintf( out, "basecounts_u\n" );
+   fprintf( out, "%sTotal counts observed for U in each position.\n", indent );
+   fprintf( out, "basecounts_n\n" );
+   fprintf( out, "%sTotal counts observed for N in each position.\n", indent );
+   fprintf( out, "basecounts_other\n" );
+   fprintf( out, "%sTotal counts observed for anything besides A, C, G, T, U, N  in each position.\n", indent );
+   fprintf( out, "histogram_gc_per_sequence\n" );
+   fprintf( out, "%sCounts for each of twenty equally sized cells representing the GC intervals\n", indent );
+   fprintf( out, "%sGC <= 0.05, ..., 0.95 < GC <= 1.0. This is a histogram of per-sequence GC.\n", indent );
+   fprintf( out, "qualquants_1\n" );
+   fprintf( out, "%sFirst quartile of quality in each position.\n", indent );
+   fprintf( out, "qualquants_2\n" );
+   fprintf( out, "%sSecond quartile (median) of quality in each position.\n", indent );
+   fprintf( out, "qualquants_3\n" );
+   fprintf( out, "%sThird quartile of quality in each position.\n", indent );
 }
 
 

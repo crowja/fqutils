@@ -22,7 +22,8 @@
 
 /*** options_new() ***/
 
-struct options *options_new( void )
+struct options *
+options_new( void )
 {
    struct options *tp;
 
@@ -40,7 +41,8 @@ struct options *options_new( void )
 
 /*** options_free() ***/
 
-void options_free( struct options *p )
+void
+options_free( struct options *p )
 {
    if ( _IS_NULL( p ) )
       return;
@@ -52,16 +54,19 @@ void options_free( struct options *p )
 
 /*** options_helpmsg() ***/
 
-void options_helpmsg( FILE *out )
+void
+options_helpmsg( FILE *out )
 {
-   char        indent[] = "        ";
+   char        indent[] = "      ";
 
    /*            "------------------------------------------------------------------------------80" */
-   fprintf( out, "USAGE: %s [options] <infile1> <infile2>\n", _I_AM );
+   fprintf( out, "USAGE\n" );
+   fprintf( out, "%s [options] <infile1> <infile2>\n", _I_AM );
    fprintf( out, "Assesses if <infile1> and <infile2> are pairwise concordant. Records are read\n" );
    fprintf( out, "one at a time from both files, and identifier pairing is checked. Nonzero exit\n" );
-   fprintf( out, "code on error or if nonpairing is detected.\n" );
-   fprintf( out, "\nOPTIONS:\n" );
+   fprintf( out, "code on error or if nonpairing is detected. Currently does not support the older\n" );
+   fprintf( out, "Illumina naming scheme with trailing /1 and /2.\n" );
+   fprintf( out, "\nOPTIONS\n" );
    fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
    fprintf( out, "%s\n", "-q, --quiet" );
@@ -75,7 +80,8 @@ void options_helpmsg( FILE *out )
 
 /*** options_cmdline() ***/
 
-void options_cmdline( struct options *p, int argc, char *argv[] )
+void
+options_cmdline( struct options *p, int argc, char *argv[] )
 {
    int         c;
    static struct option long_options[] = {

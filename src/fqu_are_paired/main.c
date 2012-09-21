@@ -18,7 +18,8 @@
 
 /*** main() ***/
 
-int main( int argc, char *argv[] )
+int
+main( int argc, char *argv[] )
 {
    char       *h11, *h12, *h21, *h22;
    char       *s1, *s2, *q1, *q2;

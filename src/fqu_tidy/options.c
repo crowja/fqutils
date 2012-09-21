@@ -59,21 +59,22 @@ options_free( struct options *p )
 void
 options_helpmsg( FILE *out )
 {
-   char        indent[] = "        ";
+   char        indent[] = "      ";
    /*            "------------------------------------------------------------------------------80" */
-   fprintf( out, "USAGE: %s [options] [<infile>]\n", _I_AM );
+   fprintf( out, "USAGE\n" );
+   fprintf( out, "%s [options] [<infile>]\n", _I_AM );
    fprintf( out, "Reads <infile> and rewrites a tidier version of it to stdout. Input is read\n" );
    fprintf( out, "from <infile> if present, otherwise stdin. Input format can be either standard\n" );
-   fprintf( out, "text or gzip compressed. Output is in the form of four-line records, though\n" );
+   fprintf( out, "text or gzip compressed. Output is lazy-FASTQ (i.e., four line records) though\n" );
    fprintf( out, "this is not required for the input.\n" );
-   fprintf( out, "\nOPTIONS:\n" );
+   fprintf( out, "\nOPTIONS\n" );
    fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
    fprintf( out, "%s\n", "-q, --quiet" );
    fprintf( out, "%s%s\n", indent, "Run quietly." );
    fprintf( out, "%s\n", "-s, --squash" );
-   fprintf( out, "%s%s\n", indent, "Squash the record by removing. Currently this simply replaces" );
-   fprintf( out, "%s%s\n", indent, "the second header in each record with a blank." );
+   fprintf( out, "%s%s\n", indent, "Squash the record by removing possibly extraneous text. Currently this" );
+   fprintf( out, "%s%s\n", indent, "simply replaces the second header in each record with a blank." );
    fprintf( out, "%s\n", "-t, --tab-delimited" );
    fprintf( out, "%s%s\n", indent, "Write the output as four tab-delimited columns. Format is" );
    fprintf( out, "%s%s\n", indent, "header_1[tab]sequence_string[tab]header_2[tab]quality_string." );
@@ -81,7 +82,7 @@ options_helpmsg( FILE *out )
    fprintf( out, "%s%s\n", indent, "Increase the level of reporting, multiples accumulate." );
    fprintf( out, "%s\n", "-v, --version" );
    fprintf( out, "%s%s\n", indent, "Print the version information and exit." );
-   fprintf( out, "\nEXAMPLES:\n" );
+   fprintf( out, "\nEXAMPLES\n" );
    fprintf( out, "# Standard text file in\n" );
    fprintf( out, "%s in.fastq > out.fastq\n\n", _I_AM );
    fprintf( out, "# Gzip compressed file input\n" );

@@ -282,7 +282,7 @@ main( int argc, char *argv[] )
    printf( "\n" );
 
    /* Per read GC content histogram */
-   printf( "histogram_gc_per_read" );
+   printf( "histogram_gc_per_sequence" );
    for ( i = 0; i < GCTAB_SIZE; i++ )
       printf( "\t%d", gctab[i] );
    printf( "\n" );
