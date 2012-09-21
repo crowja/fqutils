@@ -15,9 +15,11 @@ the package provides the following:
 ## DEPENDENCIES
 
 The package is written in Standard C, and ought to be easily portable to all Unix-like
-systems. If this isn't the case please let me know. Fqutils requires [Zlib](http://www.zlib.net/) 1.2.4
-or later, which in turn allows the tools to work transparently with text FASTQ as well as
-gzip-compressed FASTQ.
+systems. If this isn't the case please let me know. Fqutils requires Jean-Loup Gailly's and
+Mark Adler's [Zlib](http://www.zlib.net/) 1.2.4 or later, which in turn allows the tools to
+work transparently with text FASTQ as well as gzip-compressed FASTQ. It also makes use of
+Troy Hanson's convenient [uthash](http://uthash.sourceforge.net) macros uthash.h, which is
+included.
 
 ## INSTALLATION
 
