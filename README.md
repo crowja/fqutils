@@ -10,7 +10,7 @@ the package provides the following:
 * fqu_cat - Like Unix cat, but for files in FASTQ format. Assuming well-formed input the output is guaranteed to be in lazy-FASTQ (i.e., four line) records. Especially useful when your own parsers assume this simpler format.
 * fqu_splitq - Segregate FASTQ input into two output files, based on a collection of identifiers.
 * fqu_summary - Generate summary statistics for FASTQ input.
-* fqu_tidy - Write FASTQ output based on FASTQ input. Like fqu_cat, output is guaranteed to be in four line records. Provides a "--squash" option for reducing the size of each record, currently by ignoring the second header, and a "--tab-delimited" option if you happen to want the output stream in a four column format.
+* fqu_tidy - Write FASTQ output based on FASTQ input. Like fqu_cat, output is guaranteed to be in four line records. Provides a "--squash" option for reducing the size of each record, currently by ignoring the second header, and a "--tab-delimited" option if you happen to want the output stream in a four column format. These single line records can be particularly convenient for internal processing pipelines.
 
 ## DEPENDENCIES
 
@@ -30,7 +30,7 @@ The "make check" step ought to run rather quickly since at present it doesn't do
 testing at all. If your Zlib installation is in a nonstandard location, provide guidance
 to the configure script using the standard environment variables; for instance:
 
-    $ LDFLAGS=-L/opt/zlib-1.2.4 ./configure --prefix=/path/to/installdir
+    $ LDFLAGS=-L/opt/zlib-1.2.4/lib ./configure --prefix=/path/to/install_dir
 
 ## EXAMPLES
 
