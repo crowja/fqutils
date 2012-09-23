@@ -33,7 +33,6 @@ options_new( void )
 
    tp->fname = NULL;
    tp->outname = NULL;
-   tp->quiet_flag = 0;
    tp->verbosity = 0;
 
    return tp;
@@ -92,6 +91,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
    static struct option long_options[] = {
       {"help", no_argument, 0, 'h'},
       {"out", required_argument, 0, 'o'},
+      {"quiet", no_argument, 0, 'q'},
       {"verbose", no_argument, 0, 'V'},
       {"version", no_argument, 0, 'v'},
       {0, 0, 0, 0}
@@ -102,7 +102,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       /* getopt_long stores the option index here. */
       int         option_index = 0;
 
-      c = getopt_long( argc, argv, "ho:stVv", long_options, &option_index );
+      c = getopt_long( argc, argv, "ho:qstVv", long_options, &option_index );
 
       /* Detect the end of the options. */
       if ( c == -1 )
@@ -119,8 +119,11 @@ options_cmdline( struct options *p, int argc, char *argv[] )
             strcpy( p->outname, optarg );
             break;
 
+         case 'q':
+            p->verbosity = 0;
+            break;
+
          case 'V':
-            /* printf( " --verbose\n" ); */
             p->verbosity += 1;
             break;
 
