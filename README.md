@@ -8,14 +8,16 @@ Greg Hannon's lab at Cold Spring Harbor. Fqutils is intended to be useful as par
 the early portions of postsequencing pipelines and quality assessment processes. At present
 the package provides the following:
 
-* fqu_are_paired - Checks if two files are pairwise concordant.
-* fqu_cat - Like Unix cat, but for files in FASTQ format. Assuming well-formed input the output is guaranteed to be in lazy-FASTQ (i.e., four line) records. Especially useful when your own parsers assume this simpler format.
-* fqu_degen - Replaces A, C, G, T with degenerate codes. Options include conversion to purines and pyrimidines (A, G -> R and C, T -> Y) and to a GC representation (C, G -> S and A, T -> W).
-* fqu_rselect - Randomly select a subset of records from FASTQ input. 
-* fqu_splitq - Segregate FASTQ input into two output files, based on a collection of identifiers.
-* fqu_summary - Generate summary statistics for FASTQ input.
-* fqu_tidy - Write FASTQ output based on FASTQ input. Like fqu_cat, output is guaranteed to be in four line records. Provides a "--squash" option for reducing the size of each record, currently by ignoring the second header, and a "--tab-delimited" option if you happen to want the output stream in a four column format. These single line records can be particularly convenient for internal processing pipelines.
-* fqu_wc - Generates word (kmer) counts for FASTQ input.
+<table>
+<tr><td>fqu_are_paired</td><td>Checks if two files are pairwise concordant.</td></tr>
+<tr><td>fqu_cat</td><td>Like Unix cat, but for files in FASTQ format. Assuming well-formed input the output is guaranteed to be in lazy-FASTQ (i.e., four line) records. Especially useful when your own parsers assume this simpler format.</td></tr>
+<tr><td>fqu_degen</td><td>Replaces A, C, G, T with degenerate codes. Options include conversion to purines and pyrimidines (A, G -> R and C, T -> Y) and to a GC representation (C, G -> S and A, T -> W).</td></tr>
+<tr><td>fqu_rselect</td><td>Randomly select a subset of records from FASTQ input.</td></tr>
+<tr><td>fqu_splitq</td><td>Segregate FASTQ input into two output files, based on a collection of identifiers.</td></tr>
+<tr><td>fqu_summary</td><td>Generate summary statistics for FASTQ input.</td></tr>
+<tr><td>fqu_tidy</td><td>Write FASTQ output based on FASTQ input. Like fqu_cat, output is guaranteed to be in four line records. Provides a "--squash" option for reducing the size of each record, currently by ignoring the second header, and a "--tab-delimited" option if you happen to want the output stream in a four column format. These single line records can be particularly convenient for internal processing pipelines.</td></tr>
+<tr><td>fqu_wc</td><td>Generates word (kmer) counts for FASTQ input.</td></tr>
+</table>
 
 ## DEPENDENCIES
 
