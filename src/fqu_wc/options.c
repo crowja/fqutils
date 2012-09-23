@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
 #include "config.h"
 #include "options.h"
 #include "getopt.h"
@@ -31,6 +32,7 @@ options_new( void )
    if ( _IS_NULL( tp ) )
       return NULL;
 
+   tp->check_initial = UINT_MAX;
    tp->fname = NULL;
    tp->min_count = 1;
    tp->verbosity = 0;
@@ -87,6 +89,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
 {
    int         c;
    static struct option long_options[] = {
+      {"check-initial", required_argument, 0, 'c'},
       {"help", no_argument, 0, 'h'},
       {"min-count", required_argument, 0, 'm'},
       {"quiet", no_argument, 0, 'q'},
@@ -101,13 +104,17 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       /* getopt_long stores the option index here. */
       int         option_index = 0;
 
-      c = getopt_long( argc, argv, "hm:qs:tVv", long_options, &option_index );
+      c = getopt_long( argc, argv, "c:hm:qs:tVv", long_options, &option_index );
 
       /* Detect the end of the options. */
       if ( c == -1 )
          break;
 
       switch ( c ) {
+
+         case 'c':
+            p->check_initial = atol( optarg );
+            break;
 
          case 'h':
             options_helpmsg( stdout );

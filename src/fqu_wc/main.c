@@ -53,14 +53,18 @@ _resize( unsigned min )
 }
 
 static void
-_update_table( unsigned word_size, char *str )
+_update_table( unsigned word_size, char *str, unsigned check_initial )
 {
    unsigned    i;
+   unsigned    n;
 
    if ( _IS_NULL( str ) )
       return;
 
-   for ( i = 0; i < 1 + strlen( str ) - word_size; i++ ) {
+   n = 1 + strlen( str ) - word_size;            /* for a full scan */
+   n = n < check_initial ? n : check_initial;    /* reduce if requested */
+
+   for ( i = 0; i < n; i++ ) {
       unsigned    id;
       strncpy( word, str + i, word_size );       /* word <- substring */
       word[word_size] = '\0';
@@ -86,16 +90,12 @@ main( int argc, char *argv[] )
    unsigned    n;
    struct options *o = options_new(  );
    struct fqreader *z;
-   /* printf("HERE3\n"); */
 
    /* Get the command line options */
    options_cmdline( o, argc, argv );
-   /*printf("HERE4\n"); */
 
    words = tokenset_new(  );
-   /* printf("HERE5\n"); */
    word = realloc( word, sizeof ( char ) * ( 1 + o->word_size ) );
-   /* printf("HERE6\n"); */
 
    if ( o->optind == argc ) {                    /* read from stdin */
 
@@ -103,7 +103,7 @@ main( int argc, char *argv[] )
 
       while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
          stru_toupper( s );
-         _update_table( o->word_size, s );
+         _update_table( o->word_size, s, o->check_initial );
       }
 
       fqreader_free( z );
@@ -112,7 +112,6 @@ main( int argc, char *argv[] )
    else {                                        /* read from input files */
       int         k;
 
-      /* printf("HERE2\n"); */
       for ( k = o->optind; k < argc; k++ ) {
 
          z = fqreader_new( argv[k] );
@@ -124,7 +123,7 @@ main( int argc, char *argv[] )
 
          while ( fqreader_next( z, &h1, &h2, &s, &q ) ) {
             stru_toupper( s );
-            _update_table( o->word_size, s );
+            _update_table( o->word_size, s, o->check_initial );
          }
 
          fqreader_free( z );
