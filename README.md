@@ -1,5 +1,8 @@
 # FQUTILS
 
+* Home page: http://crowja.github.com/fqutils
+* Releases: https://github.com/crowja/fqutils/downloads
+
 Fqutils is a collection of command line tools for working with files in FASTQ format, and
 complements the [Fastx Toolkit](http://hannonlab.cshl.edu/fastx_toolkit) developed by
 Greg Hannon's lab at Cold Spring Harbor. Fqutils is intended to be useful as part of
