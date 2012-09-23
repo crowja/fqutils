@@ -1,7 +1,6 @@
 AC_PREREQ([2.59])
 
-##AC_INIT([fqutils], [0.0.4], [jac@ncgr.org])
-AC_INIT([fqutils], m4_esyscmd_s([ver='0.2.0'; if test z$PREDIST = z; then echo $ver; else date +$ver-%s; fi]), [jac@ncgr.org])
+AC_INIT([fqutils], m4_esyscmd_s([ver='0.3.0'; if test z$PREDIST = z; then echo $ver; else date +$ver-%s; fi]), [jac@ncgr.org])
 AM_INIT_AUTOMAKE([1.10 -Wall foreign no-define dist-bzip2 no-installinfo no-texinfo.tex])
 
 AC_CONFIG_HEADERS([config.h])
@@ -14,6 +13,7 @@ src/fqu_are_paired/Makefile \
 src/fqu_cat/Makefile \
 src/fqu_degen/Makefile \
 src/fqu_iindex/Makefile \
+src/fqu_rselect/Makefile \
 src/fqu_splitq/Makefile \
 src/fqu_summary/Makefile \
 src/fqu_tidy/Makefile \
