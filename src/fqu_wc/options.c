@@ -67,6 +67,8 @@ options_helpmsg( FILE *out )
    fprintf( out, "%s [options] [infile1> ...]\n", _I_AM );
    fprintf( out, "Generate word counts for the sequences in <infile1> ...; uses stdin otherwise.\n" );
    fprintf( out, "\nOPTIONS\n" );
+   fprintf( out, "%s\n", "-c, --check-initial <num>" );
+   fprintf( out, "%s%s\n", indent, "Check at most the first <num> words per record, from 5' [default is all]." );
    fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
    fprintf( out, "%s\n", "-m, --min-count <m>" );
