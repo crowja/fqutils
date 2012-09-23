@@ -8,9 +8,11 @@ the package provides the following:
 
 * fqu_are_paired - Checks if two files are pairwise concordant.
 * fqu_cat - Like Unix cat, but for files in FASTQ format. Assuming well-formed input the output is guaranteed to be in lazy-FASTQ (i.e., four line) records. Especially useful when your own parsers assume this simpler format.
+* fqu_degen - Replaces A, C, G, T with degenerate codes. Options include conversion to purines and pyrimidines (A, G -> R and C, T -> Y) and to a GC representation (C, G -> S and A, T -> W).
 * fqu_splitq - Segregate FASTQ input into two output files, based on a collection of identifiers.
 * fqu_summary - Generate summary statistics for FASTQ input.
 * fqu_tidy - Write FASTQ output based on FASTQ input. Like fqu_cat, output is guaranteed to be in four line records. Provides a "--squash" option for reducing the size of each record, currently by ignoring the second header, and a "--tab-delimited" option if you happen to want the output stream in a four column format. These single line records can be particularly convenient for internal processing pipelines.
+* fqu_wc - Generates word (kmer) counts for FASTQ input.
 
 ## DEPENDENCIES
 
