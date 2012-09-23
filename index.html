@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Fqutils : Toolset for bioinformatics people working with files in FASTQ format." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Fqutils</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/crowja/fqutils">View on GitHub</a>
+
+          <h1 id="project_title">Fqutils</h1>
+          <h2 id="project_tagline">Toolset for bioinformatics people working with files in FASTQ format.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/crowja/fqutils/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/crowja/fqutils/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>FQUTILS</h1>
+
+<p>Fqutils is a collection of command line tools for working with files in FASTQ format, and
+complements the <a href="http://hannonlab.cshl.edu/fastx_toolkit">Fastx Toolkit</a> developed by
+Greg Hannon's lab at Cold Spring Harbor. Fqutils is intended to be useful as part of
+the early portions of postsequencing pipelines and quality assessment processes. At present
+the package provides the following:</p>
+
+<ul>
+<li>fqu_are_paired - Checks if two files are pairwise concordant.</li>
+<li>fqu_cat - Like Unix cat, but for files in FASTQ format. Assuming well-formed input the output is guaranteed to be in lazy-FASTQ (i.e., four line) records. Especially useful when your own parsers assume this simpler format.</li>
+<li>fqu_degen - Replaces A, C, G, T with degenerate codes. Options include conversion to purines and pyrimidines (A, G -&gt; R and C, T -&gt; Y) and to a GC representation (C, G -&gt; S and A, T -&gt; W).</li>
+<li>fqu_rselect - Randomly select a subset of records from FASTQ input. </li>
+<li>fqu_splitq - Segregate FASTQ input into two output files, based on a collection of identifiers.</li>
+<li>fqu_summary - Generate summary statistics for FASTQ input.</li>
+<li>fqu_tidy - Write FASTQ output based on FASTQ input. Like fqu_cat, output is guaranteed to be in four line records. Provides a "--squash" option for reducing the size of each record, currently by ignoring the second header, and a "--tab-delimited" option if you happen to want the output stream in a four column format. These single line records can be particularly convenient for internal processing pipelines.</li>
+<li>fqu_wc - Generates word (kmer) counts for FASTQ input.</li>
+</ul><h2>DEPENDENCIES</h2>
+
+<p>The package is written in Standard C, and ought to be easily portable to all Unix-like
+systems. If this isn't the case please let me know. Fqutils requires Jean-Loup Gailly's and
+Mark Adler's <a href="http://www.zlib.net/">Zlib</a> 1.2.4 or later, which in turn allows the tools to
+work transparently with text FASTQ as well as gzip-compressed FASTQ. It also makes use of
+Troy Hanson's convenient <a href="http://uthash.sourceforge.net">uthash</a> macros uthash.h, which is
+included.</p>
+
+<h2>INSTALLATION</h2>
+
+<pre><code># Chdir into the source directory, then configure-make ...
+$ ./configure --prefix=/path/to/install_dir
+$ make
+$ make check
+$ make install
+</code></pre>
+
+<p>The "make check" step ought to run rather quickly since at present it doesn't do any
+testing at all. If your Zlib installation is in a nonstandard location, provide guidance
+to the configure script using the standard environment variables; for instance:</p>
+
+<pre><code>$ LDFLAGS=-L/opt/zlib-1.2.4/lib ./configure --prefix=/path/to/install_dir
+</code></pre>
+
+<h2>EXAMPLES</h2>
+
+<pre><code># fqu_tidy
+$ cat foo.fq | fqu_tidy
+$ gunzip -c foo.fq.gz | fqu_tidy
+$ cat foo.fq.gz | fqu_tidy
+</code></pre>
+
+<p>The third example above demonstrates that gzipped FASTQ streams can be handled directly
+without explicit uncompression. </p>
+
+<pre><code># fqu_summary
+$ fqu_summary foo.fq.gz &gt; foo.fqsum
+$ cat foo.fq | fqu_summary &gt; foo.fqsum
+
+# fqu_splitq
+$ cat foo.fq | fqu_splitq --out baz idfile1.txt idfile2.txt
+$ cat foo.fq.gz | fqu_splitq --out baz idfile1.txt idfile2.txt
+</code></pre>
+
+<h2>BUGS</h2>
+
+<p>If you find what appears to be a bug, send me the smallest possible test set you
+can pull together that demonstrates the problem.</p>
+
+<h2>CONTACT ME</h2>
+
+<p>If you find Fqutils useful, or have ideas for improvement, drop me a note or better yet open
+an issue at <a href="https://github.com/crowja/fqutils">the Fqutils GitHub page</a>.</p>
+
+<p>John A. Crow, <a href="mailto:crowja@gmail.com">crowja@gmail.com</a>.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Fqutils maintained by <a href="https://github.com/crowja">crowja</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
