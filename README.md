@@ -14,7 +14,10 @@ the package provides the following:
 <tr><td>fqu_degen</td><td>Replaces A, C, G, T with degenerate codes. Options include conversion to purines and pyrimidines (A, G -> R and C, T -> Y) and to a GC representation (C, G -> S and A, T -> W).</td></tr>
 <tr><td>fqu_rselect</td><td>Randomly select a subset of records from FASTQ input.</td></tr>
 <tr><td>fqu_splitq</td><td>Segregate FASTQ input into two output files, based on a collection of identifiers.</td></tr>
-<tr><td>fqu_summary</td><td>Generate summary statistics for FASTQ input.</td></tr>
+<tr><td>fqu_summary</td><td>Generate summary statistics for FASTQ input.
+These include total record (sequence) count, maximum sequence size, a estimation
+of the quality offset (33 or 64), basecounts per position, a GC content histogram,
+and per position quartiles of the qualities.</td></tr>
 <tr><td>fqu_tidy</td><td>Write FASTQ output based on FASTQ input. Like fqu_cat, output is guaranteed to be in four line records. Provides a "--squash" option for reducing the size of each record, currently by ignoring the second header, and a "--tab-delimited" option if you happen to want the output stream in a four column format. These single line records can be particularly convenient for internal processing pipelines.</td></tr>
 <tr><td>fqu_wc</td><td>Generates word (kmer) counts for FASTQ input.</td></tr>
 </table>
@@ -79,4 +82,5 @@ If you find Fqutils useful, or have ideas for improvement, drop me a note or bet
 an issue at [the Fqutils GitHub page](https://github.com/crowja/fqutils).
 
 John A. Crow, <crowja@gmail.com>.
+
 
