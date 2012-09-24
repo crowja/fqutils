@@ -65,11 +65,11 @@ without explicit uncompression.
 
 ## LICENSE
 
-See the LICENSE file in the distribution Fqutils is distributed under the zlib/libpng license.
+See the LICENSE file in the distribution. Fqutils is distributed under the zlib/libpng license.
 
 ## COPYRIGHT
 
-Copyright 2012 by John A. Crow and the National Center for Genome Resources. All right reserved
+Copyright 2012 by John A. Crow and the National Center for Genome Resources. All rights reserved
 
 ## BUGS
 
