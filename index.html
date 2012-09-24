@@ -77,11 +77,11 @@ the package provides the following:</p>
 </table><h2>DEPENDENCIES</h2>
 
 <p>The package is written in Standard C, and ought to be easily portable to all Unix-like
-systems. If this isn't the case please let me know. Fqutils requires Jean-Loup Gailly's and
-Mark Adler's <a href="http://www.zlib.net/">Zlib</a> 1.2.4 or later, which in turn allows the tools to
-work transparently with text FASTQ as well as gzip-compressed FASTQ. It also makes use of
-Troy Hanson's convenient <a href="http://uthash.sourceforge.net">uthash</a> macros uthash.h, which is
-included.</p>
+systems. If you find this isn't the case please let me know. Fqutils requires Jean-Loup
+Gailly's and Mark Adler's <a href="http://www.zlib.net/">Zlib</a> 1.2.4 or later, which in turn allows
+the tools to work transparently with text FASTQ as well as gzip-compressed FASTQ. It also
+makes use of Troy Hanson's convenient <a href="http://uthash.sourceforge.net">uthash</a> macros
+uthash.h, which is included.</p>
 
 <h2>INSTALLATION</h2>
 
@@ -118,6 +118,14 @@ $ cat foo.fq | fqu_summary &gt; foo.fqsum
 $ cat foo.fq | fqu_splitq --out baz idfile1.txt idfile2.txt
 $ cat foo.fq.gz | fqu_splitq --out baz idfile1.txt idfile2.txt
 </code></pre>
+
+<h2>LICENSE</h2>
+
+<p>See the LICENSE file in the distribution Fqutils is distributed under the zlib/libpng license.</p>
+
+<h2>COPYRIGHT</h2>
+
+<p>Copyright 2012 by John A. Crow and the National Center for Genome Resources. All right reserved</p>
 
 <h2>BUGS</h2>
 
