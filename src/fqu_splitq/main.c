@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <libgen.h>
 #include "main.h"
 #include "options.h"
 #include "fqreader.h"
@@ -8,6 +9,7 @@
 #include "mkdirp.h"
 #include "strutils.h"
 #include "tokenset.h"
+#include "utils.h"
 
 #ifdef  _IS_NULL
 #undef  _IS_NULL
@@ -63,7 +65,7 @@ main( int argc, char *argv[] )
          exit( 1 );
       }
 
-      while ( ( line = linereader_next( z ) ) ) {
+      while ( ( line = ( char * ) linereader_next( z ) ) ) {
          unsigned    len;
 
          stru_trim( line );

@@ -1,6 +1,6 @@
 AC_PREREQ([2.59])
 
-AC_INIT([fqutils], m4_esyscmd_s([ver='0.3.1'; if test z$PREDIST = z; then echo $ver; else date +$ver-%s; fi]), [jac@ncgr.org])
+AC_INIT([fqutils], m4_esyscmd_s([ver='0.3.2'; if test z$PREDIST = z; then echo $ver; else date +$ver-%s; fi]), [jac@ncgr.org])
 AM_INIT_AUTOMAKE([1.10 -Wall foreign no-define dist-bzip2 no-installinfo no-texinfo.tex])
 
 AC_CONFIG_HEADERS([config.h])
@@ -40,7 +40,6 @@ AS_HELP_STRING([--enable-static], [Try to build static binaries.]),
 AC_PROG_INSTALL
 AC_PROG_RANLIB
 AC_PROG_CC
-
 
 AC_CHECK_LIB([z], [gzbuffer], [], [echo "@<:@1;31m*** FAILED ***@<:@0m Could not locate an appropriate libz; requires at least Zlib 1.2.4. Perhaps you need to specify LDFLAGS?" 2>&1; exit 1])
 

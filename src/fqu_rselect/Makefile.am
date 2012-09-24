@@ -15,3 +15,7 @@ indent:
 clean-generic:
 	rm -f core core.* a.out *.BAK *.bak *~
 
+pedantic:
+	make clean; make CFLAGS="-ansi -pedantic $(CFLAGS)"
+
+
