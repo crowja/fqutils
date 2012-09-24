@@ -64,18 +64,18 @@ options_helpmsg( FILE *out )
 
    /*            "------------------------------------------------------------------------------80" */
    fprintf( out, "USAGE\n" );
-   fprintf( out, "%s [options] [infile1> ...]\n", _I_AM );
+   fprintf( out, "%s [options] [<infile1> ...]\n", _I_AM );
    fprintf( out, "Generate word counts for the sequences in <infile1> ...; uses stdin otherwise.\n" );
    fprintf( out, "\nOPTIONS\n" );
    fprintf( out, "%s\n", "-c, --check-initial <num>" );
    fprintf( out, "%s%s\n", indent, "Check at most the first <num> words per record, from 5' [default is all]." );
    fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
-   fprintf( out, "%s\n", "-m, --min-count <m>" );
-   fprintf( out, "%s%s\n", indent, "Do not report word counts smaller than <m> [default: 1]." );
+   fprintf( out, "%s\n", "-m, --min-count <min>" );
+   fprintf( out, "%s%s\n", indent, "Do not report word counts smaller than <min> [default: 1]." );
    fprintf( out, "%s\n", "-q, --quiet" );
    fprintf( out, "%s%s\n", indent, "Run quietly." );
-   fprintf( out, "%s\n", "-s, --word-size <size>" );
+   fprintf( out, "%s\n", "-s, -w, --word-size <size>" );
    fprintf( out, "%s%s\n", indent, "Use word size <size> [default: 5]." );
    fprintf( out, "%s\n", "-V, --verbosity" );
    fprintf( out, "%s%s\n", indent, "Increase the level of reporting, multiples accumulate." );
@@ -106,7 +106,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       /* getopt_long stores the option index here. */
       int         option_index = 0;
 
-      c = getopt_long( argc, argv, "c:hm:qs:tVv", long_options, &option_index );
+      c = getopt_long( argc, argv, "c:hm:qs:tVvw:", long_options, &option_index );
 
       /* Detect the end of the options. */
       if ( c == -1 )
@@ -131,6 +131,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
             break;
 
          case 's':
+         case 'w':
             p->word_size = atol( optarg );;
             break;
 
