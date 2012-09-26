@@ -73,7 +73,7 @@ for a particular purpose.
 
 ## COPYRIGHT
 
-Copyright 2012 by John A. Crow and the National Center for Genome Resources. All rights reserved
+Copyright 2012 by John A. Crow and the National Center for Genome Resources. All rights reserved.
 
 ## BUGS
 
