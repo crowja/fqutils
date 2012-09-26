@@ -82,8 +82,6 @@ int
 main( int argc, char *argv[] )
 {
    char       *h1, *h2, *s, *q;
-   unsigned    i;
-   unsigned    n;
    struct options *o = options_new(  );
    struct fqreader *z;
 

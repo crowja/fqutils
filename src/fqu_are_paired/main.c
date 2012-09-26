@@ -23,7 +23,6 @@ main( int argc, char *argv[] )
 {
    char       *h11, *h12, *h21, *h22;
    char       *s1, *s2, *q1, *q2;
-   unsigned    i;
    int         len;
    int         rc1, rc2;
    struct options *o = options_new(  );

@@ -58,7 +58,6 @@ _update_kmer_stats( char *x, unsigned k )
 {
    unsigned    i;
    unsigned    len = strlen( x );
-   unsigned    hash;
 
    for ( i = 0; i < len - k; i++ ) {
 
@@ -72,9 +71,6 @@ _update_kmer_stats( char *x, unsigned k )
 static void
 _update_header_stats( char *x )
 {
-   unsigned    i;
-   unsigned    len = strlen( x );
-   unsigned    skip = 0;
 }
 
 static void
@@ -137,7 +133,7 @@ _update_sequence_stats( char *x )
 static void
 _update_quality_stats( char *x )
 {
-   unsigned    i, j;
+   unsigned    i;
    unsigned    len = strlen( x );
 
    if ( maxpos < len )
@@ -181,7 +177,7 @@ _update_quality_quantiles( void )
    }
 }
 
-int
+static int
 _guess_qoffset( void )
 {
    unsigned    i, j;
