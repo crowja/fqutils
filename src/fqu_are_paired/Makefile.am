@@ -1,7 +1,7 @@
 bin_PROGRAMS = fqu_are_paired
 AM_CPPFLAGS = -I$(top_srcdir)/src/share
 #AM_CPPFLAGS = -I../share -I../..
-LDADD = ../share/libshare.a -lz
+LDADD = ../share/libshare.a
 .PHONY: indent strict
 
 fqu_are_paired_SOURCES = main.c main.h options.c options.h
