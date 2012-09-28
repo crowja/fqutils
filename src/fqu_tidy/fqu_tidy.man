@@ -49,7 +49,7 @@ Streaming input files or a stream:
  fqu_tidy file2.fq.gz
 
  # Text stream of FASTQ to stdout
- cat file3.fq file4.fq.gz | fqu_tidy
+ cat file3.fq file4.fq | fqu_tidy
 
  # Gzipped stream of FASTQ to stdout, without explicitly gunzipping the input
  cat file5.fq.gz | fqu_tidy
