@@ -1,0 +1,70 @@
+.\" Process this file with
+.\" groff -man -Tascii fqu_tidy.1
+.\"
+.TH FQU_TIDY "1"
+.SH NAME
+fqu_tidy \- Rewrites input FASTQ, from a file or a stream, in a tidier fashion.
+.SH SYNOPSIS
+.B fqu_tidy [
+.I OPTIONS
+.B ]
+[
+.I file 
+.B ]
+.SH DESCRIPTION
+.B fqu_tidy
+writes input FASTQ, from a file or a stream, to stdout, with the idea that the output is tidier.
+.B Fqu_tidy
+assumes the input file or stream is in FASTQ format, and either standard
+text or gzipped.
+The FASTQ standard
+allows sequence and quality data to appear on multiple lines, and
+.B fqu_tidy
+handles these situations correctly, yet
+.B fqu_tidy
+guarantees that, given well-formed input, its output will be in "lazy-FASTQ"
+format: exactly four-line records.
+.SH OPTIONS
+.IP "-h, --help"
+Print this help message and exit.
+.IP "-q, --quiet"
+Run quietly.
+.IP "-s, --squash"
+Squash the record by removing possibly extraneous text. Currently this
+simply replaces the second header in each record with a blank.
+.IP "-t, --tab-delimited"
+Write the output as four tab-delimited columns. Format is
+header_1[tab]sequence_string[tab]header_2[tab]quality_string.
+.IP "-V, --verbosity"
+Increase the level of reporting, multiples accumulate.
+.IP "-v, --version"
+Print the version information and exit.
+.SH EXAMPLES
+Streaming input files or a stream:
+
+ # FASTQ file to stdout
+ fqu_tidy file1.fq
+
+ # Gzipped FASTQ file to stdout
+ fqu_tidy file2.fq.gz
+
+ # Text stream of FASTQ to stdout
+ cat file3.fq file4.fq.gz | fqu_tidy
+
+ # Gzipped stream of FASTQ to stdout, without explicitly gunzipping the input
+ cat file5.fq.gz | fqu_tidy
+
+Changing the output:
+
+ # Smaller output with --squash:
+ fqu_tidy --squash in.fq.gz | gzip out.fq.gz
+
+ # Four-column output
+ fqu_tidy -t in.fq.gz
+.SH BUGS
+Let me know if you find something.
+.SH AUTHOR
+John A. Crow <crowja_at_gmail_dot_com>
+.SH "SEE ALSO"
+.BR fqu_cat(1),
+
