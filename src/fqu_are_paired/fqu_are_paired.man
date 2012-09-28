@@ -1,0 +1,39 @@
+.\" Process this file with
+.\" groff -man -Tascii fqu_are_paired.1
+.\"
+.TH FQU_ARE_PAIRED "1"
+.SH NAME
+fqu_are_paired \- Checks if the records in two FASTQ files are pairwise concordant.
+.SH SYNOPSIS
+.B fqu_are_paired [
+.I OPTIONS
+.B ]
+[
+.I file1 
+.B ...]
+.SH DESCRIPTION
+.B fqu_are_paired
+checks if the records in two FASTQ files are pairwise concordant. This means the identifiers
+match identically, sequentially. Returns exit code 0 if concordant, 1 otherwise. Use
+--verbose for a printed indication.
+.SH OPTIONS
+.IP "-h, --help"
+Print this help message and exit.
+.IP "-q, --quiet"
+Run quietly.
+.IP "-V, --verbosity"
+Increase the level of reporting, multiples accumulate.
+.IP "-v, --version"
+Print the version information and exit.
+.SH EXAMPLES
+ # Check two gzipped files
+ fqu_are_paired sequence_r1.fastq.gz sequence_r2.fastq.gz
+.SH BUGS
+Some FASTQ files produced for paired reads suffix the read identifier with /1, /2
+to indicate mates, or similar conventions. At present, fqu_are_paired does not 
+recognize this.
+.SH AUTHOR
+John A. Crow <crowja_at_gmail_dot_com>
+.SH "SEE ALSO"
+.BR fqu_summary(1)
+

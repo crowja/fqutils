@@ -1,0 +1,50 @@
+.\" Process this file with
+.\" groff -man -Tascii fqu_wc.1
+.\"
+.TH FQU_WC "1"
+.SH NAME
+fqu_wc \- Generate word (kmer) counts.
+.SH SYNOPSIS
+.B fqu_wc [
+.I OPTIONS
+.B ]
+[
+.I file1 
+.B ...]
+.SH DESCRIPTION
+.B fqu_wc
+generates word counts for the sequences in file1 ...; uses stdin otherwise.
+The input files or input stream can be either standard text or gzipped. See the examples below.
+.SH OPTIONS
+.IP "-c, --check-initial <num>"
+Check at most the first <num> words per record, from 5' [default is all]. Useful
+for focusing attention on this restricted portion of the records.
+.IP "-h, --help"
+Print this help message and exit.
+.IP "-m, --min-count <min>"
+Do not report word counts smaller than <min> [default: 1].
+.IP "-q, --quiet"
+Run quietly.
+.IP "-s, -w, --word-size <size>"
+Use word size <size> [default: 5].
+.IP "-V, --verbosity"
+Increase the level of reporting, multiples accumulate.
+.IP "-v, --version"
+Print the version information and exit.
+.SH EXAMPLES
+ # Count all 10mers in the first 3 words of each sequence
+ fqu_wc -w10 -c3 in.fq.gz
+
+ # Count all 20mers, don't report counts less than 1000
+ fqu_wc --word-size 20 --min-count 1000 in.fq
+.SH BUGS
+.B Fqu_wc
+performs in-memory word tracking and counting. When working with very large
+files or streams, it's possible sufficient memory will not be available on your
+platform; in this case
+.B fqu_wc
+will terminate with a nonzero exit code and an out-of-memory message.
+.SH AUTHOR
+John A. Crow <crowja_at_gmail_dot_com>
+.SH "SEE ALSO"
+.BR fqu_tidy(1)

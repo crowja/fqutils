@@ -1,0 +1,41 @@
+.\" Process this file with
+.\" groff -man -Tascii fqu_splitq.1
+.\"
+.TH FQU_SPLITQ "1"
+.SH NAME
+fqu_splitq \- Split a FASTQ stream into two FASTQ files.
+.SH SYNOPSIS
+.B fqu_splitq [
+.I OPTIONS
+.B ]
+.I id_file1 [id_file2 ...]
+.SH DESCRIPTION
+.B fqu_splitq
+splits a stream in FASTQ format into two FASTQ files based on the collection of
+sequence identifiers specified in <id_file1> ... Two files are written: <out>_A.fq and
+<out>_B.fq, where <out> is specified by --out <out> as described below. Sequences specified
+in any of the id_files are written to <out>_A.fq and the remainder to <out>_B.fq. Note that
+the relative order of the sequences in the input is preserved in the output files.
+
+.SH OPTIONS
+.IP "-h, --help"
+Print this help message and exit.
+.IP "-o, --out <outname>"
+Write output to <outname>_A.fq and <outname>_B.fq; default: ./FQU.
+.IP "-q, --quiet"
+Run quietly.
+.IP "-V, --verbosity"
+Increase the level of reporting, multiples accumulate.
+.IP "-v, --version"
+Print the version information and exit.
+.SH EXAMPLES
+ # Split a FASTQ file into two new FASTQ files
+ cat foo.fq | fqu_splitq --out bar id_file.dat 
+ #   => bar_A.fq, bar_B.fq
+.SH BUGS
+Let me know if you find something.
+.SH AUTHOR
+John A. Crow <crowja_at_gmail_dot_com>
+.SH "SEE ALSO"
+.BR fqu_splitq(1)
+

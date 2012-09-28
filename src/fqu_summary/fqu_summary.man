@@ -1,0 +1,72 @@
+.\" Process this file with
+.\" groff -man -Tascii fqu_summary.1
+.\"
+.TH FQU_SUMMARY "1"
+.SH NAME
+fqu_summary \- Checks if the records in two FASTQ files are pairwise concordant.
+.SH SYNOPSIS
+.B fqu_summary [
+.I OPTIONS
+.B ]
+[
+.I file1 
+.B ...]
+.SH DESCRIPTION
+.B fqu_summary
+checks if the records in two FASTQ files are pairwise concordant. This means the identifiers
+match identically, sequentially. Returns exit code 0 if concordant, 1 otherwise. Use
+--verbose for a printed indication.
+.SH OPTIONS
+.IP "-h, --help"
+Print this help message and exit.
+.IP "-q, --quiet"
+Run quietly.
+.IP "-V, --verbosity"
+Increase the level of reporting, multiples accumulate.
+.IP "-v, --version"
+Print the version information and exit.
+.SH REPORT STATISTICS
+Summary statistics are reported in a simple tab-delimited key-value format, designed
+to be easily machine-readable. For multiattribute values, for example the counts per
+position reported for basecounts_a, individual attributes are likewise tab-delimited.
+.IP seqcount
+Total number of sequences in the collection.
+.IP maxpos
+Maximum position observed, a.k.a., length of longest sequence.
+.IP qualities_offset
+Estimated quality offset (33 or 64).
+.IP basecounts_a
+Total counts observed for A in each position.
+.IP basecounts_c
+Total counts observed for C in each position.
+.IP basecounts_g
+Total counts observed for G in each position.
+.IP basecounts_t
+Total counts observed for T in each position.
+.IP basecounts_u
+Total counts observed for U in each position.
+.IP basecounts_n
+Total counts observed for N in each position.
+.IP basecounts_other
+Total counts observed for anything besides A, C, G, T, U, N  in each position.
+.IP histogram_gc_per_sequence
+Counts for each of twenty equally sized cells representing the GC intervals
+GC <= 0.05, ..., 0.95 < GC <= 1.0. This is a histogram of per-sequence GC.
+.IP qualquants_1
+First quartile of quality in each position.
+.IP qualquants_2
+Second quartile (median) of quality in each position.
+.IP qualquants_3
+Third quartile of quality in each position.
+.SH EXAMPLES
+ # Check two gzipped files
+ fqu_summary sequence_r1.fastq.gz sequence_r2.fastq.gz
+.SH BUGS
+Some FASTQ files produced for paired reads suffix the read identifier with /1, /2
+to indicate mates, or similar conventions. At present, fqu_summary does not 
+recognize this.
+.SH AUTHOR
+John A. Crow <crowja_at_gmail_dot_com>
+.SH "SEE ALSO"
+.BR fqu_summary(1)
+

@@ -1,0 +1,53 @@
+.\" Process this file with
+.\" groff -man -Tascii fqu_rselect.1
+.\"
+.TH FQU_RSELECT "1"
+.SH NAME
+fqu_rselect \- Randomly select records from files and streams in FASTQ format.
+.SH SYNOPSIS
+.B fqu_rselect [
+.I OPTIONS
+.B ]
+[
+.I file1 
+.B ...]
+.SH DESCRIPTION
+.B fqu_rselect
+Randomly select records at a specified rate. Results are not repeatable since selection is randomized
+with a new seed at each invocation. The selection rate (see --fraction below) is the proportion of
+records, on average, that will be reported.
+The input files or input stream can be either standard text or gzipped. See the examples below.
+The FASTQ standard
+allows sequence and quality data to appear on multiple lines, and
+.B fqu_rselect
+handles these situations correctly, yet
+guarantees that, given well-formed input, its output will be in "lazy-FASTQ"
+format: exactly four-line records.
+.SH OPTIONS
+.IP "-F, --fraction <frac>"
+Randomly select <frac> proportion of sequences from the input [default: 1].
+For example, 0.2 selects on average 20 percent of the original sequences.
+.IP "-h, --help"
+Print this help message and exit.
+.IP "-q, --quiet"
+Run quietly.
+.IP "-V, --verbosity"
+Increase the level of reporting, multiples accumulate.
+.IP "-v, --version"
+Print the version information and exit.
+.SH EXAMPLES
+
+ # Single FASTQ file to stdout, default selection rate
+ fqu_rselect file1.fq
+
+ # Gzipped FASTQ file to stdout, randomly select 30 percent
+ fqu_rselect --fraction 0.30 file2.fq.gz
+
+ # Text stream of FASTQ to stdout, select 70 percent
+ cat file3.fq | fqu_rselect -F 0.7
+.SH BUGS
+Let me know if you find something.
+.SH AUTHOR
+John A. Crow <crowja_at_gmail_dot_com>
+.SH "SEE ALSO"
+.BR fqu_tidy(1)
