@@ -11,8 +11,8 @@ src/Makefile \
 src/share/Makefile \
 src/fqu_are_paired/Makefile \
 src/fqu_cat/Makefile \
+src/fqu_cull/Makefile \
 src/fqu_degen/Makefile \
-src/fqu_iindex/Makefile \
 src/fqu_rselect/Makefile \
 src/fqu_splitq/Makefile \
 src/fqu_summary/Makefile \
@@ -38,6 +38,7 @@ AS_HELP_STRING([--enable-static], [Try to build static binaries.]),
 )
 
 AC_PROG_INSTALL
+AM_PROG_AR
 AC_PROG_RANLIB
 AC_PROG_CC
 

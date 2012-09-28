@@ -1,7 +1,7 @@
 bin_PROGRAMS = fqu_cull
 #AM_CPPFLAGS = -I../share -I../.. 
 AM_CPPFLAGS = -I$(top_srcdir)/src/share
-LDADD = ../share/libshare.a -lz
+LDADD = ../share/libshare.a
 
 fqu_cull_SOURCES = main.c main.h options.c options.h
 dist_man1_MANS = fqu_cull.man

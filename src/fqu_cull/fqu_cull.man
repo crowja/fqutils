@@ -1,0 +1,40 @@
+.\" Process this file with
+.\" groff -man -Tascii fqu_cull.1
+.\"
+.TH FQU_CULL "1"
+.SH NAME
+fqu_cull \- Split a FASTQ stream into two FASTQ files.
+.SH SYNOPSIS
+.B fqu_cull [
+.I OPTIONS
+.B ]
+.I id_file1 [id_file2 ...]
+.SH DESCRIPTION
+.B fqu_cull
+rewrites a subset of a FASTQ stream into a new FASTQ stream based on the collection
+of sequence identifiers specified in
+.I id_file1 ...
+Note that the relative order of
+the sequences in the input is preserved in the output.
+
+.SH OPTIONS
+.IP "-h, --help"
+Print this help message and exit.
+.IP "-q, --quiet"
+Run quietly.
+.IP "-r, --reverse"
+Reverse the reporting sense: only records not in the input lists.
+.IP "-V, --verbosity"
+Increase the level of reporting, multiples accumulate.
+.IP "-v, --version"
+Print the version information and exit.
+.SH EXAMPLES
+# Report all records *not* specified in id_file.dat
+ cat foo.fq | fqu_cull id_file.dat 
+.SH BUGS
+Let me know if you find something.
+.SH AUTHOR
+John A. Crow <crowja_at_gmail_dot_com>
+.SH "SEE ALSO"
+.BR fqu_cull(1)
+

@@ -1,8 +1,7 @@
 struct options {
    char       *fname;                       /* input file name, if any */
-   char       *listfname;                   /* list file name, if any */
    int         optind;
-   unsigned    quiet_flag;
+   unsigned    reverse_flag;
    unsigned    verbosity;
 };
 

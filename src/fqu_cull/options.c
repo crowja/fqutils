@@ -31,8 +31,7 @@ struct options *options_new( void )
       return NULL;
 
    tp->fname = NULL;
-   tp->quiet_flag = 0;
-   tp->listfname = NULL;
+   tp->reverse_flag = 0;
    tp->verbosity = 0;
 
    return tp;
@@ -55,19 +54,21 @@ void options_free( struct options *p )
 
 void options_helpmsg( FILE *out )
 {
-   char        indent[] = "        ";
+   char        indent[] = "      ";
 
    /*            "------------------------------------------------------------------------------80" */
-   fprintf( out, "USAGE: %s [options] [<infile>]\n", _I_AM );
-   fprintf( out, "Reads fastq-formatted <infile> and a list of identifier. Writes two output files.\n" );
-   fprintf( out, "\nOPTIONS:\n" );
+   fprintf( out, "USAGE\n" );
+   fprintf( out, "cat in.fq | %s [options] <id_file1> ...\n", _I_AM );
+   fprintf( out, "Rewrites a subset of a FASTQ stream into a new FASTQ stream based on the collection\n" );
+   fprintf( out, "of sequence identifiers specified in <id_file1> ... Note that the relative order of\n" );
+   fprintf( out, "the sequences in the input is preserved in the output.\n" );
+   fprintf( out, "\nOPTIONS\n" );
    fprintf( out, "%s\n", "-h, --help" );
    fprintf( out, "%s%s\n", indent, "Print this help message and exit." );
-   fprintf( out, "%s\n", "-l, --list <lfname>" );
-   fprintf( out, "%s%s\n", indent, "Specify that the file <lfname> contains a list of" );
-   fprintf( out, "%s%s\n", indent, "identifiers to be used for culling the input." );
    fprintf( out, "%s\n", "-q, --quiet" );
    fprintf( out, "%s%s\n", indent, "Run quietly." );
+   fprintf( out, "%s\n", "-r, --reverse" );
+   fprintf( out, "%s%s\n", indent, "Reverse the reporting sense: only records not in the input lists." );
    fprintf( out, "%s\n", "-V, --verbosity" );
    fprintf( out, "%s%s\n", indent, "Increase the level of reporting, multiples accumulate." );
    fprintf( out, "%s\n", "-v, --version" );
@@ -83,6 +84,7 @@ void options_cmdline( struct options *p, int argc, char *argv[] )
    static struct option long_options[] = {
       {"help", no_argument, 0, 'h'},
       {"quiet", no_argument, 0, 'q'},
+      {"reverse", no_argument, 0, 'r'},
       {"verbose", no_argument, 0, 'V'},
       {"version", no_argument, 0, 'v'},
       {0, 0, 0, 0}
@@ -93,7 +95,7 @@ void options_cmdline( struct options *p, int argc, char *argv[] )
       /* getopt_long stores the option index here. */
       int         option_index = 0;
 
-      c = getopt_long( argc, argv, "hqVv", long_options, &option_index );
+      c = getopt_long( argc, argv, "hqrVv", long_options, &option_index );
 
       /* Detect the end of the options. */
       if ( c == -1 )
@@ -109,8 +111,11 @@ void options_cmdline( struct options *p, int argc, char *argv[] )
             p->verbosity = 0;
             break;
 
+         case 'r':
+            p->reverse_flag = 1;
+            break;
+
          case 'V':
-            /* printf( " --verbose\n" ); */
             p->verbosity += 1;
             break;
 
