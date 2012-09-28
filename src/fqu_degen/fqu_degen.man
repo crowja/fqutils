@@ -1,0 +1,49 @@
+.\" Process this file with
+.\" groff -man -Tascii fqu_degen.1
+.\"
+.TH FQU_DEGEN "1"
+.SH NAME
+fqu_degen \- Replaces nucleotide characters with degenerate characters.
+.SH SYNOPSIS
+.B fqu_degen [
+.I OPTIONS
+.B ]
+[
+.I file1 
+.B ...]
+.SH DESCRIPTION
+.B fqu_degen
+reads FASTQ, from files or input stream, and replaces A, C, G, T, U with ambiguity characters,
+writing to stdout; see --conversion-type below for details.
+The input files or input stream can be either standard text or gzipped.
+The FASTQ standard
+allows sequence and quality data to appear on multiple lines, and
+.B fqu_degen
+handles these situations correctly, yet
+guarantees that, given well-formed input, its output will be in "lazy-FASTQ"
+format: exactly four-line records.
+.SH OPTIONS
+.IP "-c, --conversion-type <type>"
+Specify one of the types of degeneration to perform:
+.RS
+ 0: No degeneration, simply pass the input to output
+ 1: Convert to purines and pyrimidines: A, G -> R and C, T -> Y
+ 2: GC conversion: C, G -> S and A, T -> W
+.RE
+.IP "-h, --help"
+Print this help message and exit.
+.IP "-q, --quiet"
+Run quietly.
+.IP "-V, --verbosity"
+Increase the level of reporting, multiples accumulate.
+.IP "-v, --version"
+Print the version information and exit.
+.SH EXAMPLES
+TBD
+.SH BUGS
+Let me know if you find something.
+.SH AUTHOR
+John A. Crow <crowja_at_gmail_dot_com>
+.SH "SEE ALSO"
+.BR fqu_tidy(1)
+

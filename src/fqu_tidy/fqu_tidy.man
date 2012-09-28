@@ -21,7 +21,6 @@ The FASTQ standard
 allows sequence and quality data to appear on multiple lines, and
 .B fqu_tidy
 handles these situations correctly, yet
-.B fqu_tidy
 guarantees that, given well-formed input, its output will be in "lazy-FASTQ"
 format: exactly four-line records.
 .SH OPTIONS
@@ -66,5 +65,4 @@ Let me know if you find something.
 .SH AUTHOR
 John A. Crow <crowja_at_gmail_dot_com>
 .SH "SEE ALSO"
-.BR fqu_cat(1),
-
+.BR fqu_cat(1)
