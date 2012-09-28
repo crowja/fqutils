@@ -11,6 +11,7 @@ the package provides the following:
 <table>
 <tr><td>fqu_are_paired</td><td>Checks if two files are pairwise concordant.</td></tr>
 <tr><td>fqu_cat</td><td>Like Unix cat, but for files in FASTQ format. Assuming well-formed input the output is guaranteed to be in lazy-FASTQ (i.e., four line) records. Especially useful when your own parsers assume this simpler format.</td></tr>
+<tr><td>fqu_cull</td><td>Reports a subset of a FASTQ stream, based on a collection of identifiers.</td></tr>
 <tr><td>fqu_degen</td><td>Replaces A, C, G, T with degenerate codes. Options include conversion to purines and pyrimidines (A, G -> R and C, T -> Y) and to a GC representation (C, G -> S and A, T -> W).</td></tr>
 <tr><td>fqu_rselect</td><td>Randomly select a subset of records from FASTQ input.</td></tr>
 <tr><td>fqu_splitq</td><td>Segregate FASTQ input into two output files, based on a collection of identifiers.</td></tr>
