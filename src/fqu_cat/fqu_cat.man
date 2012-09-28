@@ -13,9 +13,9 @@ fqu_cat \- Like POSIX cat, but for files and streams in FASTQ format.
 .B ...]
 .SH DESCRIPTION
 .B fqu_cat
-is like the Posix cat command, streaming a file or input stream to stdout. The difference is that
-.B fqu_cat
-assumes the input files or stream is in FASTQ format, either standard text or gzipped.
+is like POSIX cat(1) for FASTQ: it reads streaming FASTQ, from files or input stream, and
+writes it to stdout. 
+The input files or input stream can be either standard text or gzipped. See the examples below.
 The FASTQ standard
 allows sequence and quality data to appear on multiple lines, and
 .B fqu_cat
@@ -44,7 +44,7 @@ Streaming input files or a stream:
  # Single FASTQ file to stdout
  fqu_cat file1.fq
 
- # Two gzipped FASTQ files to stdout
+ # Gzipped FASTQ files to stdout
  fqu_cat file2.fq.gz file3.fq.gz
 
  # Text stream of FASTQ to stdout
