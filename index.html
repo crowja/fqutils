@@ -51,6 +51,10 @@ the package provides the following:</p>
 <td>Like Unix cat, but for files in FASTQ format. Assuming well-formed input the output is guaranteed to be in lazy-FASTQ (i.e., four line) records. Especially useful when your own parsers assume this simpler format.</td>
 </tr>
 <tr>
+<td>fqu_cull</td>
+<td>Reports a subset of a FASTQ stream, based on a collection of identifiers.</td>
+</tr>
+<tr>
 <td>fqu_degen</td>
 <td>Replaces A, C, G, T with degenerate codes. Options include conversion to purines and pyrimidines (A, G -&gt; R and C, T -&gt; Y) and to a GC representation (C, G -&gt; S and A, T -&gt; W).</td>
 </tr>
@@ -83,8 +87,7 @@ and per position quartiles of the qualities.</td>
 systems. If you find this isn't the case please let me know. Fqutils requires Jean-Loup
 Gailly's and Mark Adler's <a href="http://www.zlib.net/">Zlib</a> 1.2.4 or later, which in turn allows
 the tools to work transparently with text FASTQ as well as gzip-compressed FASTQ. It also
-makes use of Troy Hanson's convenient <a href="http://uthash.sourceforge.net">uthash</a> macros
-uthash.h, which is included.</p>
+makes use of Troy Hanson's convenient <a href="http://uthash.sourceforge.net">uthash macro collection</a>, which is included.</p>
 
 <h2>INSTALLATION</h2>
 
@@ -132,7 +135,7 @@ for a particular purpose.</p>
 
 <h2>COPYRIGHT</h2>
 
-<p>Copyright 2012 by John A. Crow and the National Center for Genome Resources. All rights reserved</p>
+<p>Copyright 2012 by John A. Crow and the National Center for Genome Resources. All rights reserved.</p>
 
 <h2>BUGS</h2>
 
