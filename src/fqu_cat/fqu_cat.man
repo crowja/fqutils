@@ -1,0 +1,68 @@
+.\" Process this file with
+.\" groff -man -Tascii fqu_cat.1
+.\"
+.TH FQU_CAT "1"
+.SH NAME
+fqu_cat \- Like Posix cat, but for files and streams in FASTQ format.
+.SH SYNOPSIS
+.B fqu_cat [
+.I OPTIONS
+.B ]
+.I [file1 
+.B ...]
+.SH DESCRIPTION
+.B fqu_cat
+Is like the Posix cat command, streaming a file or input stream to stdout. The difference is that
+.B fqu_cat
+assumes the input files or stream is in FASTQ format, either standard text or gzipped.
+The FASTQ standard
+allows sequence and quality data to appear on multiple lines, and
+.B fqu_cat
+handles these situations correctly. However
+.B fqu_cat
+guarantees that, given well-formed input, its output will be in "lazy-FASTQ"
+format \-\- exactly four line records.
+.SH OPTIONS
+.IP "-h, --help"
+Print this help message and exit.
+.IP "-q, --quiet"
+Run quietly.
+.IP "-s, --squash"
+Attempt to reduce the size of each record. Currently this
+simply replaces the second header in each record with a blank.
+.IP "-t, --tab-delimited"
+Write the output as four tab-delimited columns. Format is
+header_1[tab]sequence_string[tab]header_2[tab]quality_string.
+.IP "-V, --verbosity"
+Increase the level of reporting, multiples accumulate.
+.IP "-v, --version"
+Print the version information and exit.
+.SH EXAMPLES
+Streaming input files or a stream:
+
+ # Single FASTQ file to stdout
+ fqu_cat file1.fq
+
+ # Two gzipped FASTQ files to stdout
+ fqu_cat file2.fq.gz file3.fq.gz
+
+ # Text stream of FASTQ to stdout
+ cat file4.fq | fqu_cat
+
+ # Gzipped stream of FASTQ to stdout
+ cat file5.fq.gz | fqu_cat
+
+Changing the output:
+
+ # Smaller output with --squash:
+ fqu_cat --squash in.fq.gz | gzip out.fq.gz
+
+ # Four-column output
+ fqu_cat -t in.fq.gz
+.SH BUGS
+Let me know if you find something.
+.SH AUTHOR
+John A. Crow <crowja_at_gmail_dot_com>
+.SH "SEE ALSO"
+.BR fqu_tidy(1),
+
