@@ -1,12 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <libgen.h>
 #include "main.h"
 #include "options.h"
 #include "fqreader.h"
 #include "linereader.h"
-#include "mkdirp.h"
 #include "strutils.h"
 #include "tokenset.h"
 #include "utils.h"
@@ -23,9 +21,9 @@
 
 /*** main() ***/
 
-int main( int argc, char *argv[] )
+int
+main( int argc, char *argv[] )
 {
-   FILE       *out_a, *out_b;
    char       *h1, *h2, *s, *q;
    char       *id = NULL;
    int         i;
