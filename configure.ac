@@ -1,6 +1,7 @@
 AC_PREREQ([2.59])
 
-AC_INIT([fqutils], m4_esyscmd_s([ver='0.4.0'; if test z$PREDIST = z; then echo $ver; else date +$ver-%s; fi]), [jac@ncgr.org])
+AC_INIT( [fqutils], m4_esyscmd_s([ver='0.4.0'; if test z$PREDIST = z; then echo $ver; else date +$ver-%s; fi]), [jac@ncgr.org] )
+
 AM_INIT_AUTOMAKE([1.10 -Wall foreign no-define dist-bzip2 no-installinfo no-texinfo.tex])
 
 AC_CONFIG_HEADERS([config.h])
@@ -38,7 +39,7 @@ AS_HELP_STRING([--enable-static], [Try to build static binaries.]),
 )
 
 AC_PROG_INSTALL
-AM_PROG_AR
+m4_ifdef([AM_PROG_AR], [AM_PROG_AR])  # workaround autotools inconsistency
 AC_PROG_RANLIB
 AC_PROG_CC
 
