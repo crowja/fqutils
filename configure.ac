@@ -33,15 +33,15 @@ AX_PATH_LIB_PCRE
 
 ### FIXME --- add handling for --with-static, --with-static=yes, --with-static=no
 AC_ARG_ENABLE([static],
-AS_HELP_STRING([--enable-static], [Try to build static binaries.]),
-[LDFLAGS=["-static ${LDFLAGS}"]],
-[]
-)
+AS_HELP_STRING([--enable-static], [Try to build static binaries.]), [LDFLAGS=["-static ${LDFLAGS}"]], [])
 
 AC_PROG_INSTALL
 m4_ifdef([AM_PROG_AR], [AM_PROG_AR])  # workaround autotools inconsistency
 AC_PROG_RANLIB
 AC_PROG_CC
+AC_HEADER_STDC
+AC_PROG_CC_STDC
+AC_TYPE_SIZE_T
 
 AC_CHECK_LIB([z], [gzbuffer], [], [echo "@<:@1;31m*** FAILED ***@<:@0m Could not locate an appropriate libz; requires at least Zlib 1.2.4. Perhaps you need to specify LDFLAGS?" 2>&1; exit 1])
 
