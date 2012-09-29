@@ -33,7 +33,7 @@ makes use of Troy Hanson's convenient [uthash macro collection](http://uthash.so
 
 ## INSTALLATION
 
-    # Chdir into the source directory, then configure-make ...
+    ### Chdir into the source directory, then configure-make ...
     $ ./configure --prefix=/path/to/install_dir
     $ make
     $ make check
@@ -47,7 +47,7 @@ to the configure script using the standard environment variables; for instance:
 
 ## EXAMPLES
 
-    # fqu_tidy
+    ### fqu_tidy
     $ cat foo.fq | fqu_tidy
     $ gunzip -c foo.fq.gz | fqu_tidy
     $ cat foo.fq.gz | fqu_tidy
@@ -55,11 +55,11 @@ to the configure script using the standard environment variables; for instance:
 The third example above demonstrates that gzipped FASTQ streams can be handled directly
 without explicit uncompression. 
 
-    # fqu_summary
+    ### fqu_summary
     $ fqu_summary foo.fq.gz > foo.fqsum
     $ cat foo.fq | fqu_summary > foo.fqsum
 
-    # fqu_splitq
+    ### fqu_splitq
     $ cat foo.fq | fqu_splitq --out baz idfile1.txt idfile2.txt
     $ cat foo.fq.gz | fqu_splitq --out baz idfile1.txt idfile2.txt
 
