@@ -1,6 +1,7 @@
 struct options {
    unsigned    conversion_type;
    char       *fname;                       /* input file name, if any */
+   unsigned    max_threads;
    int         optind;
    unsigned    verbosity;
 };

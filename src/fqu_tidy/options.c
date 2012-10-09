@@ -32,6 +32,7 @@ options_new( void )
       return NULL;
 
    tp->fname = NULL;
+   tp->max_threads = 1;
    tp->squash_flag = 0;
    tp->tabs_flag = 0;
    tp->verbosity = 0;
@@ -59,6 +60,7 @@ void
 options_helpmsg( FILE *out )
 {
    char        indent[] = "      ";
+
    /*            "------------------------------------------------------------------------------80" */
    fprintf( out, "USAGE\n" );
    fprintf( out, "%s [options] [<infile>]\n", _I_AM );
@@ -103,6 +105,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       {"help", no_argument, 0, 'h'},
       {"quiet", no_argument, 0, 'q'},
       {"squash", no_argument, 0, 's'},
+      {"max-threads", required_argument, 0, 'T'},
       {"tab-delimited", no_argument, 0, 't'},
       {"verbose", no_argument, 0, 'V'},
       {"version", no_argument, 0, 'v'},
@@ -114,7 +117,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       /* getopt_long stores the option index here. */
       int         option_index = 0;
 
-      c = getopt_long( argc, argv, "hqstVv", long_options, &option_index );
+      c = getopt_long( argc, argv, "hqsT:tVv", long_options, &option_index );
 
       /* Detect the end of the options. */
       if ( c == -1 )
@@ -132,6 +135,12 @@ options_cmdline( struct options *p, int argc, char *argv[] )
 
          case 's':
             p->squash_flag = 1;
+            break;
+
+         case 'T':
+            p->max_threads = atol( optarg );
+            printf( "[WARNING] %s: you specified %d threads, but this option currently is unavailable\n", _I_AM,
+             p->max_threads );
             break;
 
          case 't':

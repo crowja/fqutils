@@ -116,6 +116,8 @@ options_cmdline( struct options *p, int argc, char *argv[] )
 
          case 'T':
             p->max_threads = atol( optarg );
+            printf( "[WARNING] %s: you specified %d threads, but this option currently is unavailable\n", _I_AM,
+             p->max_threads );
             break;
 
          case 'V':

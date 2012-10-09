@@ -34,6 +34,7 @@ options_new( void )
 
    tp->check_initial = UINT_MAX;
    tp->fname = NULL;
+   tp->max_threads = 1;
    tp->min_count = 1;
    tp->verbosity = 0;
    tp->word_size = 5;
@@ -94,6 +95,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       {"check-initial", required_argument, 0, 'c'},
       {"help", no_argument, 0, 'h'},
       {"min-count", required_argument, 0, 'm'},
+      {"max-threads", required_argument, 0, 'T'},
       {"quiet", no_argument, 0, 'q'},
       {"word-size", required_argument, 0, 's'},
       {"verbose", no_argument, 0, 'V'},
@@ -106,7 +108,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       /* getopt_long stores the option index here. */
       int         option_index = 0;
 
-      c = getopt_long( argc, argv, "c:hm:qs:tVvw:", long_options, &option_index );
+      c = getopt_long( argc, argv, "c:hm:qs:T:Vvw:", long_options, &option_index );
 
       /* Detect the end of the options. */
       if ( c == -1 )
@@ -133,6 +135,12 @@ options_cmdline( struct options *p, int argc, char *argv[] )
          case 's':
          case 'w':
             p->word_size = atol( optarg );;
+            break;
+
+         case 'T':
+            p->max_threads = atol( optarg );
+            printf( "[WARNING] %s: you specified %d threads, but this option currently is unavailable\n", _I_AM,
+             p->max_threads );
             break;
 
          case 'V':

@@ -33,6 +33,7 @@ options_new( void )
 
    tp->conversion_type = 0;
    tp->fname = NULL;
+   tp->max_threads = 1;
    tp->verbosity = 0;
 
    return tp;
@@ -89,6 +90,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       {"conversion-type", required_argument, 0, 'c'},
       {"help", no_argument, 0, 'h'},
       {"quiet", no_argument, 0, 'q'},
+      {"max-threads", required_argument, 0, 'T'},
       {"verbose", no_argument, 0, 'V'},
       {"version", no_argument, 0, 'v'},
       {0, 0, 0, 0}
@@ -99,7 +101,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       /* getopt_long stores the option index here. */
       int         option_index = 0;
 
-      c = getopt_long( argc, argv, "c:hqVv", long_options, &option_index );
+      c = getopt_long( argc, argv, "c:hqT:Vv", long_options, &option_index );
 
       /* Detect the end of the options. */
       if ( c == -1 )
@@ -117,6 +119,12 @@ options_cmdline( struct options *p, int argc, char *argv[] )
 
          case 'q':
             p->verbosity = 0;
+            break;
+
+         case 'T':
+            p->max_threads = atol( optarg );
+            printf( "[WARNING] %s: you specified %d threads, but this option currently is unavailable\n", _I_AM,
+             p->max_threads );
             break;
 
          case 'V':

@@ -1,6 +1,7 @@
 struct options {
    char       *fname;                       /* input file name, if any */
    unsigned    check_initial;
+   unsigned    max_threads;
    unsigned    min_count;
    int         optind;
    unsigned    verbosity;

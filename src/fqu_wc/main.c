@@ -66,6 +66,7 @@ _update_table( unsigned word_size, char *str, unsigned check_initial )
 
    for ( i = 0; i < n; i++ ) {
       unsigned    id;
+
       strncpy( word, str + i, word_size );       /* word <- substring */
       word[word_size] = '\0';
       if ( strspn( word, "ACGRSTUWY" ) < word_size )
