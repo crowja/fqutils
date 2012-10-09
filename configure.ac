@@ -24,6 +24,8 @@ tests/Makefile
 
 AC_CANONICAL_HOST
 AX_PATH_LIB_PCRE
+### AX_OPENMP
+### CFLAGS="$CFLAGS $OPENMP_CFLAGS"
 
 ###AC_ARG_WITH([zlib-prefix],
 ### AS_HELP_STRING([--with-zlib-prefix=<path>], [Look for zlib includes in <path>/include and libraries in <path>/lib]),

@@ -32,6 +32,7 @@ options_new( void )
       return NULL;
 
    tp->fname = NULL;
+   tp->max_threads = 1;
    tp->verbosity = 0;
 
    return tp;
@@ -86,6 +87,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
    static struct option long_options[] = {
       {"help", no_argument, 0, 'h'},
       {"quiet", no_argument, 0, 'q'},
+      {"max-threads", required_argument, 0, 'T'},
       {"verbose", no_argument, 0, 'V'},
       {"version", no_argument, 0, 'v'},
       {0, 0, 0, 0}
@@ -96,7 +98,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
       /* getopt_long stores the option index here. */
       int         option_index = 0;
 
-      c = getopt_long( argc, argv, "hqstVv", long_options, &option_index );
+      c = getopt_long( argc, argv, "hqsT:tVv", long_options, &option_index );
 
       /* Detect the end of the options. */
       if ( c == -1 )
@@ -110,6 +112,10 @@ options_cmdline( struct options *p, int argc, char *argv[] )
 
          case 'q':
             p->verbosity = 0;
+            break;
+
+         case 'T':
+            p->max_threads = atol( optarg );
             break;
 
          case 'V':
