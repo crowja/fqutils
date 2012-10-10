@@ -89,8 +89,7 @@ main( int argc, char *argv[] )
    options_cmdline( o, argc, argv );
 
    if ( o->conversion_type > 2 ) {
-      fprintf( stderr, "[ERROR] %s: Invalid conversion type specified: %d. See %s --help for details.\n", _I_AM,
-       o->conversion_type, _I_AM );
+      fprintf( stderr, "[ERROR] %s: Invalid conversion type specified: %d. See %s --help for details.\n", _I_AM, o->conversion_type, _I_AM );
       exit( 1 );
    }
 

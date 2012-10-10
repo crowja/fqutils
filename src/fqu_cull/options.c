@@ -123,8 +123,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
 
          case 'T':
             p->max_threads = atol( optarg );
-            printf( "[WARNING] %s: you specified %d threads, but this option currently is unavailable\n", _I_AM,
-             p->max_threads );
+            printf( "[WARNING] %s: you specified %d threads, but this option currently is unavailable\n", _I_AM, p->max_threads );
             break;
 
          case 'V':
@@ -137,7 +136,7 @@ options_cmdline( struct options *p, int argc, char *argv[] )
 
          case '?':
             /* getopt_long already printed an error message. */
-            break;
+            exit( 1 );
 
          default:
             abort(  );
