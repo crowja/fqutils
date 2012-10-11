@@ -91,7 +91,7 @@ makes use of Troy Hanson's convenient <a href="http://uthash.sourceforge.net">ut
 
 <h2>INSTALLATION</h2>
 
-<pre><code># Chdir into the source directory, then configure-make ...
+<pre><code>### Chdir into the source directory, then configure-make ...
 $ ./configure --prefix=/path/to/install_dir
 $ make
 $ make check
@@ -107,7 +107,7 @@ to the configure script using the standard environment variables; for instance:<
 
 <h2>EXAMPLES</h2>
 
-<pre><code># fqu_tidy
+<pre><code>### fqu_tidy
 $ cat foo.fq | fqu_tidy
 $ gunzip -c foo.fq.gz | fqu_tidy
 $ cat foo.fq.gz | fqu_tidy
@@ -116,16 +116,23 @@ $ cat foo.fq.gz | fqu_tidy
 <p>The third example above demonstrates that gzipped FASTQ streams can be handled directly
 without explicit uncompression. </p>
 
-<pre><code># fqu_summary
+<pre><code>### fqu_summary
 $ fqu_summary foo.fq.gz &gt; foo.fqsum
 $ cat foo.fq | fqu_summary &gt; foo.fqsum
 
-# fqu_splitq
+### fqu_splitq
 $ cat foo.fq | fqu_splitq --out baz idfile1.txt idfile2.txt
 $ cat foo.fq.gz | fqu_splitq --out baz idfile1.txt idfile2.txt
 </code></pre>
 
-<h2>LICENSE</h2>
+<h2>ACKNOWLEDGEMENTS</h2>
+
+<p>Special thanks to:</p>
+
+<ul>
+<li>Laurent Guerby and the good folks at the <a href="http://gcc.gnu.org/wiki/CompileFarm">GCC Compile Farm</a> for 
+providing an environment for testing across multiple systems.</li>
+</ul><h2>LICENSE</h2>
 
 <p>See the LICENSE file in the distribution. Fqutils is distributed under the zlib/libpng license.</p>
 
