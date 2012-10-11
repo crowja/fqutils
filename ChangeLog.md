@@ -1,4 +1,4 @@
-## 0.4.1 candidate
+## 0.4.1-work (development)
 * Now using uthash-1.9.7 http://uthash.sourceforge.net.
 * Following benchmarking, mainly of fqu_wc, the uthash.h hash function was set to
 be SFH rather than the default JEN.

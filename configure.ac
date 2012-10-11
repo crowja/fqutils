@@ -1,6 +1,6 @@
 AC_PREREQ([2.59])
 
-AC_INIT( [fqutils], m4_esyscmd_s([ver='0.4.0'; if test z$PREDIST = z; then echo $ver; else date +$ver-%s; fi]), [jac@ncgr.org] )
+AC_INIT( [fqutils], m4_esyscmd_s([ver='0.4.1-work'; if test z$PREDIST = z; then echo $ver; else date +$ver-%s; fi]), [jac@ncgr.org] )
 
 AM_INIT_AUTOMAKE([1.10 -Wall foreign no-define dist-bzip2 no-installinfo no-texinfo.tex])
 
