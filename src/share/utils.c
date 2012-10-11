@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 /*** utils_extract_id() ***/
@@ -13,3 +14,19 @@ utils_extract_id( char **id, char *h )
 }
 
 /*** utils_print_spinner() ***/
+void
+utils_print_spinner( unsigned times )
+{
+   unsigned    i;
+
+   printf( " " );
+
+   for ( i = 0; i < times; i++ ) {
+      printf( "\b|" ), sleep( 1 ), fflush( stdout );
+      printf( "\b/" ), sleep( 1 ), fflush( stdout );
+      printf( "\b-" ), sleep( 1 ), fflush( stdout );
+      printf( "\b\\" ), sleep( 1 ), fflush( stdout );
+   }
+
+   printf("\b ");
+}
