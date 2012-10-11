@@ -63,6 +63,13 @@ without explicit uncompression.
     $ cat foo.fq | fqu_splitq --out baz idfile1.txt idfile2.txt
     $ cat foo.fq.gz | fqu_splitq --out baz idfile1.txt idfile2.txt
 
+## ACKNOWLEDGEMENTS
+
+Special thanks to:
+* Laurent Guerby and the good folks at the [GCC Compile Farm](http://gcc.gnu.org/wiki/CompileFarm) for 
+providing an environment for testing across multiple systems.
+
+
 ## LICENSE
 
 See the LICENSE file in the distribution. Fqutils is distributed under the zlib/libpng license.
