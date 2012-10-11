@@ -142,10 +142,11 @@ options_cmdline( struct options *p, int argc, char *argv[] )
          case 'T':
             p->max_threads = atol( optarg );
             if ( p->max_threads == 0 ) {
-               printf( "You really want to run with no threads? ... Ok, done!\n" );
+               fprintf( stderr, "[WARNING] %s: You really want to run with no threads? Ok, ... done!\n", _I_AM );
                exit( 0 );
             }
-            printf( "[WARNING] %s: you specified %d threads, but this option currently is unavailable\n", _I_AM, p->max_threads );
+            printf( "[WARNING] %s: you specified %d threads, but this option currently is unavailable\n", _I_AM,
+             p->max_threads );
             break;
 
          case 't':

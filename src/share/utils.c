@@ -11,3 +11,5 @@ utils_extract_id( char **id, char *h )
    strncpy( *id, h, len );
    ( *id )[len] = '\0';
 }
+
+/*** utils_print_spinner() ***/
