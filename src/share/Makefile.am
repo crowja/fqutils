@@ -1,7 +1,7 @@
 #NOTE NEXT IS ONLY FOR INSTALLED LIBRARIES
 #lib_LIBRARIES = libshare.a
 
-# Define HASH_FUNCTION for uthash.h; all functions seem better than the default JEN
+# Define HASH_FUNCTION for uthash.h; all appear faster than the default JEN
 AM_CPPFLAGS = -DHASH_FUNCTION=HASH_SFH
 
 noinst_LIBRARIES = libshare.a
