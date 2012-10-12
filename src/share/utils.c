@@ -28,5 +28,5 @@ utils_print_spinner( unsigned times )
       printf( "\b\\" ), sleep( 1 ), fflush( stdout );
    }
 
-   printf("\b ");
+   printf( "\b " );
 }

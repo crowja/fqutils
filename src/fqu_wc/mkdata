@@ -6,31 +6,17 @@ my $count = 0;
 
 foreach ( 1 .. 2000 ) {
     $count += 1;
-    my $j = 65 + rand( 26 );
-    my $c = chr( $j );
-    my @c = split( //, $c x 50 );
 
-    print "\@MIKITA:$count:stan\n";
-    while ( @c ) {
-        if ( rand() < 0.1 ) {
-            print "\n";
-        }
-        else {
-            print shift( @c );
-        }
+    my @s;
+    my @q;
+
+    foreach my $i ( 0 .. 99) {
+        push @s, ('a', 'c', 'g', 't')[ rand(3.999999) ];
+        push @q, chr( 65 + rand( 26 ));
     }
-    print "\n";
 
-    my @q = split( //, lc $c x 50 );
+    my $s = join('', @s);
+    my $q = join('', @q);
 
-    print "+extra_header_for:MIKITA:$count:stan\n";
-    while ( @q ) {
-        if ( rand() < 0.1 ) {
-            print "\n";
-        }
-        else {
-            print shift( @q );
-        }
-    }
-    print "\n";
+    print "\@MIKITA:$count:stan\n$s\n+extra_header_for:MIKITA:$count:stan\n$q\n";
 }
