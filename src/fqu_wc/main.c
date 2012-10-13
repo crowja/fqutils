@@ -131,9 +131,10 @@ main( int argc, char *argv[] )
       }
    }
 
-   /* Sort the countlist */
+   /* Print the countlist */
 
    n = tokenset_count( words );
+
    for ( i = 0; i < n; i++ ) {
       if ( countlist[i].count < o->min_count )
          continue;
