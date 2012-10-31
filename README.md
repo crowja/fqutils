@@ -5,12 +5,12 @@
 Fqutils is a collection of command line tools for working with files in FASTQ format, and
 complements the [Fastx Toolkit](http://hannonlab.cshl.edu/fastx_toolkit) developed by
 Greg Hannon's lab at Cold Spring Harbor. Fqutils is intended to be useful as part of
-the early portions of postsequencing pipelines and quality assessment processes. At present
-the package provides the following:
+the early portions of postsequencing pipelines and quality assessment processes. Note that Fqutils
+correctly parses FASTQ as specified in the standard, and as a convenience produces *Lazy-FASTQ* output -- four line (header1-sequence-header2-quality) records. At present the package provides the following:
 
 <table>
-<tr><td>fqu_are_paired</td><td>Checks if two files are associated pairwise: Does the first record appearing in FASTQ file_1 have the same identifier as the first record in FASTQ files_2? ..., etc.</td></tr>
-<tr><td>fqu_cat</td><td>Like Unix cat, but for files in FASTQ format. Assuming well-formed input the output is guaranteed to be in lazy-FASTQ (i.e., four line) records. Especially useful when your own parsers assume this simpler format.</td></tr>
+<tr><td>fqu_are_paired</td><td>Checks if two files are associated pairwise: Does the first record appearing in FASTQ file_1 have the same identifier as the first record in FASTQ file_2? ..., etc.</td></tr>
+<tr><td>fqu_cat</td><td>Like Unix cat, but for files in FASTQ format. Assuming well-formed input the output is guaranteed to be in lazy-FASTQ records. Especially useful when your own parsers assume this simpler format.</td></tr>
 <tr><td>fqu_cull</td><td>Reports a subset of a FASTQ stream, based on a collection of identifiers.</td></tr>
 <tr><td>fqu_degen</td><td>Replaces A, C, G, T with degenerate codes. Options include conversion to purines and pyrimidines (A, G -> R and C, T -> Y) and to a GC representation (C, G -> S and A, T -> W).</td></tr>
 <tr><td>fqu_rselect</td><td>Randomly select a subset of records from FASTQ input.</td></tr>
