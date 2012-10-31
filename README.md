@@ -6,7 +6,7 @@ Fqutils is a collection of command line tools for working with files in FASTQ fo
 complements the [Fastx Toolkit](http://hannonlab.cshl.edu/fastx_toolkit) developed by
 Greg Hannon's lab at Cold Spring Harbor. Fqutils is intended to be useful as part of
 the early portions of postsequencing pipelines and quality assessment processes. Note that Fqutils
-correctly parses FASTQ as specified in the standard, and as a convenience produces *Lazy-FASTQ* output -- four line (header1-sequence-header2-quality) records. At present the package provides the following:
+correctly parses [FASTQ as specified in the standard](http://www.ncbi.nlm.nih.gov/pubmed/20015970), and as a convenience produces *Lazy-FASTQ* output -- four line (header1-sequence-header2-quality) records. At present the package provides the following:
 
 <table>
 <tr><td>fqu_are_paired</td><td>Checks if two files are associated pairwise: Does the first record appearing in FASTQ file_1 have the same identifier as the first record in FASTQ file_2? ..., etc.</td></tr>
