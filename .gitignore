@@ -22,4 +22,5 @@ configure
 depcomp
 install-sh
 missing
+stamp-h1
 
