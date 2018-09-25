@@ -2,6 +2,11 @@
 
 **[Home page](http://crowja.github.com/fqutils)** | **[Downloads](https://github.com/crowja/fqutils/downloads)** | **[Issues](https://github.com/crowja/fqutils/issues)**
 
+**NOTE** The Downloads link above provides legacy tarballs up to ver. 0.4.0. 
+For the most recent bundle click the "Clone or download" button on
+[the fqutils home page](http://crowja.github.com/fqutils).
+
+
 Fqutils is a collection of command line tools for working with files in FASTQ format, and
 complements the [Fastx Toolkit](http://hannonlab.cshl.edu/fastx_toolkit) developed by
 Greg Hannon's lab at Cold Spring Harbor. Fqutils is intended to be useful as part of
@@ -80,6 +85,7 @@ for a particular purpose.
 
 ## COPYRIGHT
 
+Copyright 2018 by John A. Crow and Blackbird Analytics. All rights reserved.
 Copyright 2012 by John A. Crow and the National Center for Genome Resources. All rights reserved.
 
 ## BUGS
