@@ -13,11 +13,9 @@ core
 *.deps
 aclocal.m4
 autom4te.cache
-config.guess
 config.h
 config.log
 config.status
-config.sub
 depcomp
 stamp-h1
 
