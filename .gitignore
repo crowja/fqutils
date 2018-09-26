@@ -3,7 +3,6 @@
 *.so
 *.so.*
 *.dylib
-*.in
 Makefile
 core
 *.BAK
@@ -16,6 +15,5 @@ autom4te.cache
 config.h
 config.log
 config.status
-depcomp
 stamp-h1
 
