@@ -6,6 +6,10 @@
 For the most recent bundle click the "Clone or download" button on
 [the fqutils home page](http://github.com/crowja/fqutils).
 
+The codebase is good but I want to remove the Automake dependency. I've been
+happy with Autoconf and will continue using it during the refactoring. A few
+folks have expressed interest in conversion to Cmake. I can be influenced, 
+let me know! :) jac
 
 Fqutils is a collection of command line tools for working with files in FASTQ format, and
 complements the [Fastx Toolkit](http://hannonlab.cshl.edu/fastx_toolkit) developed by
